@@ -1,0 +1,75 @@
+[gd_scene load_steps=12 format=3 uid="uid://cisyb23r5wlju"]
+
+[ext_resource type="Texture2D" uid="uid://cf0q7j8x2rn7u" path="res://Assets/Bart/Bart Wayne first sprite (3 rows).png" id="1_kx68a"]
+[ext_resource type="Script" path="res://Scripts/Ghost_Effect.gd" id="2_xr38o"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ax2w1"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tckas"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88ghp"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_177gn"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tg5k1"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_peawm"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(64, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w208u"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vxomt"]
+atlas = ExtResource("1_kx68a")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_70k4t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ax2w1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tckas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88ghp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_177gn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tg5k1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_peawm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_w208u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vxomt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="ghost" type="AnimatedSprite2D"]
+texture_filter = 1
+scale = Vector2(6.1, 6.1)
+sprite_frames = SubResource("SpriteFrames_70k4t")
+autoplay = "default"
+script = ExtResource("2_xr38o")
