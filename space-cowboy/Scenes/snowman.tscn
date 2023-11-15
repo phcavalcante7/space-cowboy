@@ -1,0 +1,142 @@
+[gd_scene load_steps=21 format=3 uid="uid://bnc17yc2vtym"]
+
+[ext_resource type="Texture2D" uid="uid://c3whx5lt4hj7m" path="res://assets/Snowman/snowman.png" id="1_1p55s"]
+[ext_resource type="Script" path="res://Scripts/snowman.gd" id="1_hvqay"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ues48"]
+radius = 7.0
+height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g2cgd"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1jaua"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nnbri"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rylow"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7366o"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_53mls"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_23lk6"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5hgfx"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kwhcd"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4tv62"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eaub5"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2inr"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3y2n"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0h7u0"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uvaay"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3n2yk"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(480, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ujnwc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g2cgd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1jaua")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nnbri")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rylow")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7366o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_53mls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_23lk6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5hgfx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kwhcd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4tv62")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eaub5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2inr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3y2n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0h7u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uvaay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3n2yk")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}]
+
+[node name="Snowman" type="CharacterBody2D"]
+script = ExtResource("1_hvqay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CapsuleShape2D_ues48")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, 1)
+sprite_frames = SubResource("SpriteFrames_ujnwc")
+animation = &"run"
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
