@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Jogador"
-run/main_scene="res://Scenes/Player.tscn"
+run/main_scene="res://Jogador/Scenes/Player.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
 [editor]
 
-movie_writer/movie_file="C:/Users/Usuario/Desktop/godot/GodotProjects/TestesScripts/filmagem/teste.avi"
+movie_writer/movie_file="C:/Users/Usuario/Desktop/godot/GodotProjects/Jogador/filmagem/teste.avi"
 
 [input]
 
