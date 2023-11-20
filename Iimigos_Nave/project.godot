@@ -15,6 +15,10 @@ run/main_scene="res://Enemies/Scenes/enemy_chase.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
+[editor]
+
+movie_writer/movie_file="C:/Users/Usuario/Desktop/projetos_godot/Iimigos_Nave/fimalgem/iaa.avi"
+
 [input]
 
 move_left={
