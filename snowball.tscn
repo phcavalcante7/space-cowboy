@@ -1,0 +1,31 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdn4csyqllher"]
+
+[ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_nd8sh"]
+[ext_resource type="Texture2D" uid="uid://dccsh1lb4ekpp" path="res://Assets/snowball.png" id="2_72a0o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1o1me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_72a0o")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Snowball" type="Node2D"]
+scale = Vector2(1.61959, 1.48404)
+script = ExtResource("1_nd8sh")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1o1me")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-9, -9)
+scale = Vector2(0.993808, 0.980369)
+target_position = Vector2(17.9283, 18.4078)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

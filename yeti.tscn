@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://bp2o15b80omxa"]
+
+[ext_resource type="Texture2D" uid="uid://baucxg187vtmm" path="res://randomAssets/Yeti.png" id="1_dsux6"]
+[ext_resource type="Script" path="res://Scripts/yeti.gd" id="1_s2nbu"]
+[ext_resource type="PackedScene" uid="uid://cdn4csyqllher" path="res://Scenes/snowball.tscn" id="2_xfam8"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1ofsq"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dsux6")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_dsux6")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_trqd4"]
+radius = 21.0
+height = 60.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_04u3o"]
+
+[node name="Yeti" type="CharacterBody2D"]
+position = Vector2(-1, -1)
+script = ExtResource("1_s2nbu")
+bullet_scene = ExtResource("2_xfam8")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-4, -3)
+sprite_frames = SubResource("SpriteFrames_1ofsq")
+animation = &"shooting"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+position = Vector2(-2, 0)
+shape = SubResource("CapsuleShape2D_trqd4")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+scale = Vector2(1.116, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+scale = Vector2(40, 40)
+shape = SubResource("CircleShape2D_04u3o")
+
+[node name="WallVerifier" type="RayCast2D" parent="."]
+rotation = -6.28319
+scale = Vector2(2.00318, 2)
+target_position = Vector2(186.204, 167)
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]

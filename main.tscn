@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://7r2n0p0c3yba"]
+
+[ext_resource type="PackedScene" uid="uid://ct1jkcxq0v8cf" path="res://Jogador/Scenes/Player.tscn" id="2_jwjib"]
+[ext_resource type="PackedScene" uid="uid://dka7ofxo82xs" path="res://Scenes/king_frostbite.tscn" id="3_wr1nc"]
+
+[node name="Main" type="Node2D"]
+position = Vector2(2, 0)
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -4.0
+offset_top = -14.0
+offset_right = 1149.0
+offset_bottom = 636.0
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("2_jwjib")]
+position = Vector2(45, 47)
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="King-Frostbite" parent="Mobs" node_paths=PackedStringArray("player") instance=ExtResource("3_wr1nc")]
+position = Vector2(502, 254)
+player = NodePath("../../Player/Player")
+
+[node name="HP" type="Node2D" parent="."]
+position = Vector2(1107, 24)
