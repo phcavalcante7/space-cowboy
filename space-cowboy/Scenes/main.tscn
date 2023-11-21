@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://7r2n0p0c3yba"]
+
+[ext_resource type="PackedScene" uid="uid://76nqaqw5btn0" path="res://Scenes/bart.tscn" id="1_q0kuy"]
+[ext_resource type="PackedScene" uid="uid://dl1oxtf7skb0d" path="res://Scenes/fada_de_gelo.tscn" id="2_js8sg"]
+[ext_resource type="Texture2D" uid="uid://cq5ni6gp7trh4" path="res://assets/lifeheart.png" id="6_476cr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dcq3w"]
+vertices = PackedVector2Array(1179, 675, -24, 682, -15, -19, 1178, -22)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1178, -22, -15, -19, -24, 682, 1179, 675)])
+
+[node name="Main" type="Node2D"]
+position = Vector2(0, -2)
+metadata/_edit_vertical_guides_ = [23.0]
+
+[node name="IdiotBG" type="ColorRect" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(28.7965, 16.379)
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_dcq3w")
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="Player" parent="Player" instance=ExtResource("1_q0kuy")]
+position = Vector2(43, 34)
+
+[node name="Mobs" type="Node2D" parent="."]
+
+[node name="FadaDeGelo" parent="Mobs" instance=ExtResource("2_js8sg")]
+position = Vector2(914, 423)
+
+[node name="HP" type="Node2D" parent="."]
+position = Vector2(1091, 7)
+
+[node name="Lifeheart1" type="Sprite2D" parent="HP"]
+position = Vector2(-34, 26)
+texture = ExtResource("6_476cr")
+
+[node name="Lifeheart2" type="Sprite2D" parent="HP"]
+position = Vector2(1, 26)
+texture = ExtResource("6_476cr")
+
+[node name="Lifeheart3" type="Sprite2D" parent="HP"]
+position = Vector2(36, 26)
+texture = ExtResource("6_476cr")

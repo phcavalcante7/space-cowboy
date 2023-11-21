@@ -1,0 +1,65 @@
+[gd_scene load_steps=7 format=3 uid="uid://b0ou0jtcq0812"]
+
+[ext_resource type="Script" path="res://Scripts/bruxa.gd" id="1_7nu8r"]
+[ext_resource type="Texture2D" uid="uid://i255r7oots4a" path="res://randomAssets/sorcerer.png" id="1_urakr"]
+[ext_resource type="PackedScene" uid="uid://bnc17yc2vtym" path="res://Scenes/snowman.tscn" id="2_qfn7j"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_50ruc"]
+radius = 13.8691
+height = 29.5873
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hotce"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_urakr")
+}],
+"loop": true,
+"name": &"run",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_urakr")
+}],
+"loop": true,
+"name": &"shooting",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_urakr")
+}],
+"loop": true,
+"name": &"summoning",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0x8fn"]
+
+[node name="Bruxa" type="CharacterBody2D"]
+position = Vector2(-3, 0)
+scale = Vector2(1.96829, 2.49245)
+script = ExtResource("1_7nu8r")
+snowman_scene = ExtResource("2_qfn7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(3, -1.19209e-07)
+scale = Vector2(0.418856, -1.08154)
+shape = SubResource("CapsuleShape2D_50ruc")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_hotce")
+animation = &"shooting"
+
+[node name="PlayerDetection" type="Area2D" parent="."]
+scale = Vector2(20, 20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetection"]
+shape = SubResource("CircleShape2D_0x8fn")
+
+[node name="Timer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="PlayerDetection" to="." method="_on_player_detection_body_entered"]
+[connection signal="body_exited" from="PlayerDetection" to="." method="_on_player_detection_body_exited"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
