@@ -203,18 +203,20 @@ libraries = {
 "": SubResource("AnimationLibrary_rvvwg")
 }
 
-[node name="Dash_lenght" type="Timer" parent="."]
+[node name="Sounds" type="AudioStreamPlayer2D" parent="."]
+attenuation = 0.366022
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Dash_lenght" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Dash_cooldown" type="Timer" parent="."]
+[node name="Dash_cooldown" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="Ghost_Timer" type="Timer" parent="."]
+[node name="Ghost_Timer" type="Timer" parent="Timers"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
-
-[connection signal="timeout" from="Ghost_Timer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="Timers/Ghost_Timer" to="." method="_on_ghost_timer_timeout"]

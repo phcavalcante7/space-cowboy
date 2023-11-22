@@ -8,13 +8,13 @@ const DASH_COOLDOWN = 1.5
 const DASH_DURATION = 0.3
 
 @onready var anim = get_node("AnimationPlayer")
-@onready var dash_lenght = get_node("Dash_lenght")
-@onready var dash_cooldown_timer = get_node("Dash_cooldown")
-@onready var ghost_timer = $Ghost_Timer
+@onready var dash_lenght = $Timers/Dash_lenght
+@onready var dash_cooldown_timer = $Timers/Dash_cooldown
+@onready var ghost_timer = $Timers/Ghost_Timer
 @export var ghost_effect : PackedScene
 
 func _physics_process(delta):
-	velocity = Input.get_vector("move_left","move_right","move_up","move_down") * speed
+	velocity = Input.get_vector("move_left","move_right","move_up","move_down", 0.0).normalized() * speed
 	
 	verif_dash()
 	is_looking_at()
@@ -28,6 +28,8 @@ func _physics_process(delta):
 
 func verif_dash(): # realiza o dash
 	if Input.is_action_just_pressed("move_dash") and !is_dash_cooling_down():
+		$Sounds.stream = load("res://Jogador/Assets/Sounds/dash_sound.wav")
+		$Sounds.play(0.0)
 		start_dash(DASH_DURATION)
 	
 	if is_dashing():
@@ -53,7 +55,7 @@ func is_dash_cooling_down(): # retorna se o dash está em cooldown
 func add_ghost(): # Cria uma unidade de ghost do personagem
 	ghost_timer.start()
 	var ghost = ghost_effect.instantiate()
-	ghost.set_property($AnimatedSprite2D.position, $AnimatedSprite2D.scale)
+	ghost.set_property(global_position, $AnimatedSprite2D.scale)
 	get_tree().current_scene.add_child(ghost)
 	ghost.flip_h = $AnimatedSprite2D.flip_h
 
