@@ -1,0 +1,47 @@
+[gd_scene load_steps=6 format=3 uid="uid://bccnsrfsp71jm"]
+
+[ext_resource type="Script" path="res://Jogador/Scripts/bullet_script.gd" id="1_8hvsn"]
+
+[sub_resource type="Gradient" id="Gradient_007hs"]
+offsets = PackedFloat32Array(0, 0.980645)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_fefep"]
+gradient = SubResource("Gradient_007hs")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.518349)
+fill_to = Vector2(0.940367, 0.197248)
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6l6m"]
+radius = 6.0
+height = 52.0
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_0d2ir"]
+
+[node name="Area2D" type="Area2D"]
+script = ExtResource("1_8hvsn")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(1, 1)
+color = Color(0.607843, 0.0627451, 0.164706, 1)
+texture = SubResource("GradientTexture2D_fefep")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_v6l6m")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.580392, 0.0745098, 0.188235, 1)
+texture_filter = 1
+position = Vector2(-2.27374e-13, 0)
+rotation = 1.5708
+scale = Vector2(10, 44.5)
+texture = SubResource("CanvasTexture_0d2ir")
+
+[node name="Life_Time" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
