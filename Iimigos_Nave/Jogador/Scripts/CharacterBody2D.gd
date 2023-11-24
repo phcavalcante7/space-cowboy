@@ -65,7 +65,6 @@ func is_looking_at(): # Muda a direção onde o personagem está olhando
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-	pass
 
 func mouse_direction() -> Vector2:
 	return global_position.direction_to(get_global_mouse_position())

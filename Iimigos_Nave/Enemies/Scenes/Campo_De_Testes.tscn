@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://cipcow4i823hs"]
+
+[ext_resource type="PackedScene" uid="uid://byi687xq20aa2" path="res://Enemies/Scenes/enemy_chase.tscn" id="1_ll7s2"]
+[ext_resource type="PackedScene" uid="uid://ct1jkcxq0v8cf" path="res://Jogador/Scenes/Player.tscn" id="2_nc0uq"]
+[ext_resource type="PackedScene" uid="uid://o1rp1svnc0u3" path="res://Enemies/Scenes/Patrulheiro.tscn" id="3_orco8"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_sl7cr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_5ga1h"]
+vertices = PackedVector2Array(1171, -32, 1167, 671, -10, 661, -1, -4)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -4, -10, 661, 1167, 671, 1171, -32)])
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+show_behind_parent = true
+position = Vector2(577.75, 323.75)
+scale = Vector2(1156.5, 648.5)
+texture = SubResource("CanvasTexture_sl7cr")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_5ga1h")
+
+[node name="Player" parent="." instance=ExtResource("2_nc0uq")]
+position = Vector2(553, 323)
+
+[node name="Inimigos" type="Node2D" parent="."]
+
+[node name="Patrulheiro" parent="Inimigos" instance=ExtResource("3_orco8")]
+position = Vector2(745, 89)
+
+[node name="Enemy_Chase" parent="Inimigos" instance=ExtResource("1_ll7s2")]
+position = Vector2(59, 67)

@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="AI_Inimigos_Nave_Espacial"
-run/main_scene="res://Enemies/Scenes/enemy_chase.tscn"
+run/main_scene="res://Enemies/Scenes/Campo_De_Testes.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 
