@@ -1,51 +1,143 @@
-[gd_scene load_steps=6 format=3 uid="uid://dl1oxtf7skb0d"]
+[gd_scene load_steps=21 format=3 uid="uid://dl1oxtf7skb0d"]
 
 [ext_resource type="Script" path="res://Scripts/fada_de_gelo.gd" id="1_md51f"]
-[ext_resource type="Texture2D" uid="uid://bayip1ifrfp7j" path="res://randomAssets/FadaGelo.png" id="2_i12sj"]
+[ext_resource type="PackedScene" uid="uid://rem1mwk2jpop" path="res://Scenes/ice_cube.tscn" id="2_favwc"]
+[ext_resource type="PackedScene" uid="uid://cgcloa3vjd364" path="res://Scenes/area_de_gelo.tscn" id="3_8ogvw"]
+[ext_resource type="Texture2D" uid="uid://71mmldugbtlo" path="res://assets/Fada_De_Gelo/fada_de_gelo.png" id="3_vqlom"]
 [ext_resource type="PackedScene" uid="uid://bqdgi2yqe2mh1" path="res://Scenes/raycastsAI.tscn" id="3_xli7b"]
+[ext_resource type="Texture2D" uid="uid://df1lsgmfq72wc" path="res://assets/Fada_De_Gelo/fada_de_gelo_shoot.png" id="5_mvfb8"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ykmf5"]
-radius = 17.0
+radius = 9.54273
 height = 36.0
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_6jodo"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf60o"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yv5ho"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f31fo"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c762j"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g1scf"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08jho"]
+atlas = ExtResource("3_vqlom")
+region = Rect2(32, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_caam7"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_iylho"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_il6to"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 64, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c5o4i"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 96, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dpqft"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 128, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_homg7"]
+atlas = ExtResource("5_mvfb8")
+region = Rect2(0, 160, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bff67"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_i12sj")
+"texture": SubResource("AtlasTexture_pf60o")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_i12sj")
-}],
-"loop": true,
-"name": &"idle",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("2_i12sj")
+"texture": SubResource("AtlasTexture_yv5ho")
 }, {
 "duration": 1.0,
-"texture": ExtResource("2_i12sj")
+"texture": SubResource("AtlasTexture_f31fo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c762j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g1scf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08jho")
 }],
 "loop": true,
 "name": &"run",
 "speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_caam7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_iylho")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_il6to")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c5o4i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dpqft")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_homg7")
+}],
+"loop": true,
+"name": &"shoot",
+"speed": 5.0
 }]
 
 [node name="FadaDeGelo" type="CharacterBody2D"]
+scale = Vector2(1.5, 1.5)
 script = ExtResource("1_md51f")
+bullet_scene = ExtResource("2_favwc")
+path_scene = ExtResource("3_8ogvw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(1, -2)
+visible = false
+position = Vector2(-0.666667, 0)
+scale = Vector2(0.813478, 0.587662)
 shape = SubResource("CapsuleShape2D_ykmf5")
-
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(1, -3)
-sprite_frames = SubResource("SpriteFrames_6jodo")
-animation = &"idle"
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
 [node name="Raycasts" parent="." instance=ExtResource("3_xli7b")]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+z_index = 1
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_bff67")
+animation = &"shoot"
+
+[node name="WallVerifier" type="RayCast2D" parent="."]
+target_position = Vector2(150, 0)
+collision_mask = 2
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Path" type="Timer" parent="."]
+
+[connection signal="timeout" from="Timer" to="." method="shoot_timeouts"]
+[connection signal="timeout" from="Path" to="." method="_on_path_timeout"]

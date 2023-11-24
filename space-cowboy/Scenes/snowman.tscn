@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bnc17yc2vtym"]
+[gd_scene load_steps=38 format=3 uid="uid://bnc17yc2vtym"]
 
 [ext_resource type="Texture2D" uid="uid://c3whx5lt4hj7m" path="res://assets/Snowman/snowman.png" id="1_1p55s"]
 [ext_resource type="Script" path="res://Scripts/snowman.gd" id="1_hvqay"]
@@ -7,6 +7,70 @@
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ues48"]
 radius = 7.0
 height = 14.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ifi5h"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mormo"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6qy8"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgdya"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h76nt"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(128, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8t1lr"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(160, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ge8ry"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(192, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xjbok"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(224, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_itylw"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_04va3"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(288, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xl37i"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(320, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ds1ou"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(352, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sgsg"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(384, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3sgre"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(416, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p2yrv"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(448, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_afpk5"]
+atlas = ExtResource("1_1p55s")
+region = Rect2(480, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_g2cgd"]
 atlas = ExtResource("1_1p55s")
@@ -76,6 +140,59 @@ region = Rect2(480, 0, 32, 32)
 animations = [{
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_ifi5h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mormo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6qy8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgdya")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h76nt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8t1lr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ge8ry")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xjbok")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_itylw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_04va3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xl37i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ds1ou")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sgsg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3sgre")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p2yrv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_afpk5")
+}],
+"loop": false,
+"name": &"explode",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_g2cgd")
 }, {
 "duration": 1.0,
@@ -138,7 +255,7 @@ shape = SubResource("CapsuleShape2D_ues48")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, 1)
 sprite_frames = SubResource("SpriteFrames_ujnwc")
-animation = &"run"
+animation = &"explode"
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
@@ -146,3 +263,4 @@ animation = &"run"
 debug_enabled = true
 
 [node name="Raycasts" parent="." instance=ExtResource("3_oriqg")]
+scale = Vector2(0.5, 0.5)

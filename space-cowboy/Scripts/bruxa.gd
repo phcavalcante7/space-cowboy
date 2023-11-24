@@ -4,7 +4,7 @@ const SPEED = 100.0
 
 @export var snowman_scene : PackedScene
 
-@onready var player = get_parent().get_parent().get_node("Player/Player")
+@onready var player = get_parent().get_parent().get_node("PlayerNode/Player")
 var inRange = false
 var summoning = false
 var side

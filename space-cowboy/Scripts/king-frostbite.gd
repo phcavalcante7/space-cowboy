@@ -3,50 +3,58 @@ extends CharacterBody2D
 const SPEED = 50.0
 
 @export var bullet_scene : PackedScene
-@export var player : CharacterBody2D
 @export var hammer : PackedScene 
 @export var freezing : PackedScene
-var health = 50
+@onready var player = get_parent().get_parent().get_node("PlayerNode/Player")
 var getting_hammer = false
-var center_pos : Vector2
-var angle = -PI/2 
-var radius = 200.0
-var hammer_position_after_throw
+var voltando = false
 var close = false
+var center_pos : Vector2
+var angle = -PI/2
+var radius = 200.0
+var health = 50
+var hammer_position_after_throw
+var start_pos : Vector2
 
 func _ready():
-	$ArremessoDoMartelo.set_wait_time(10)
+	$ArremessoDoMartelo.set_wait_time(5)
 	$ArremessoDoMartelo.start()
 	
 	$Shoot.set_wait_time(1)
 	$Shoot.start()
 	
-	$ArremessoEm2Seg.set_wait_time(8)
+	$ArremessoEm2Seg.set_wait_time(3)
 	$ArremessoEm2Seg.start()
 	
 	center_pos = global_position
 
 func _physics_process(_delta : float):
-	
 	if getting_hammer:
-		var direction = (hammer_position_after_throw - self.position).normalized()
-		
-		# nao a melhor forma de se resolver mas resolvido
-		if close:
-			velocity = Vector2.ZERO
-		if not close:
-			velocity = direction * SPEED
+		if not voltando:
+			var direction = (hammer_position_after_throw - self.global_position).normalized()
 			
-		if direction.x > 0:
-			get_node("AnimatedSprite2D").flip_h = true
+			# nao a melhor forma de se resolver mas resolvido
+			if close:
+				velocity = Vector2.ZERO
+			if not close:
+				velocity = direction * SPEED
+				
+			if direction.x > 0:
+				get_node("AnimatedSprite2D").flip_h = true
+			else:
+				get_node("AnimatedSprite2D").flip_h = false
+			if self.position.distance_to(hammer_position_after_throw) <= 40 and not close:
+				close = true
+				print("Close: ", close)
+				$GettingHammer.set_wait_time(2)
+				$GettingHammer.start()
 		else:
-			get_node("AnimatedSprite2D").flip_h = false
-		if self.position.distance_to(hammer_position_after_throw) <= 40 and not close:
-			close = true
-			print("Close: ", close)
-			$GettingHammer.set_wait_time(2)
-			$GettingHammer.start()
-			
+			var distancia_centro = (center_pos - self.global_position)
+			var direction = distancia_centro.normalized()
+			if distancia_centro.length() < radius:
+				direction *= -1
+			velocity = direction * SPEED
+			is_in_circle(distancia_centro)
 	else:
 		walk()
 	
@@ -67,6 +75,13 @@ func shoot():
 	bullet.direction = Vector2(xDif, yDif).normalized()
 	get_parent().add_child(bullet) # adding snowball in mobs
 	
+
+func is_in_circle(dist : Vector2):
+	if dist.length() - radius < 2:
+		getting_hammer = false
+		voltando = false
+		dist *= -1
+		angle = dist.angle_to(center_pos)
 
 func walk():
 	angle += 0.007 
@@ -113,6 +128,6 @@ func _on_arremesso_em_2_seg_timeout():
 
 
 func _on_getting_hammer_timeout():
-	getting_hammer = false
 	close = false
+	voltando = true
 	$GettingHammer.stop()

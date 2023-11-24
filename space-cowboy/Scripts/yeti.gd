@@ -7,7 +7,7 @@ const SPEED = 50.0
 var inRange = false
 var side
 var wall_verifier : RayCast2D
-@onready var player = get_parent().get_parent().get_parent().get_node("Player/Player")
+@onready var player = get_parent().get_parent().get_parent().get_node("PlayerNode/Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():

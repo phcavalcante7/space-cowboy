@@ -7,7 +7,7 @@ var raycasts_array = []
 var danger_array = [0,0,0,0,0,0,0,0]
 var interest_array = [0,0,0,0,0,0,0,0]
 @onready var enemy = get_parent()
-@onready var target = get_parent().get_parent().get_parent().get_node("Player/Player")
+@onready var target = get_parent().get_parent().get_parent().get_node("PlayerNode/Player")
 
 func _ready():
 	for child in get_children():
@@ -22,9 +22,7 @@ func _process(delta):
 	direction_danger_update()
 	interest_update(target_direction)
 	global_contex_update()
-	#var steering_force = calculate_steering_force()
-	#var new_smart_direction = calculate_new_velocity_steering(delta, steering_force)
-	
+
 
 func direction_danger_update():
 	var i : int = 0
@@ -63,19 +61,18 @@ func global_contex_update():
 		interest_array[i] = interest_array[i] - danger
 		i += 1
 
-
 func calculate_steering_force(direction : Vector2) -> Vector2:
 	var new_array = danger_array
 	new_array.sort()
 	if new_array[7] == 0:
-		return Vector2.ZERO
+		return direction
 	var best_direction = interest_array.max()
 	var best_direction_index = interest_array.find(best_direction)
-	var steering_force =  (directions_array[best_direction_index]).normalized()
+	var steering_force =  directions_array[best_direction_index].normalized()
 	return steering_force
 
 
 func calculate_new_velocity_steering(delta, steering_force : Vector2, speed) -> Vector2:
 	#var original_velocity = direction * speed
-	var new_intelligent_velocity = (enemy.velocity + (steering_force * delta)).normalized() * speed
-	return new_intelligent_velocity
+	var new_intelligent_velocity = enemy.velocity + (steering_force * delta)
+	return new_intelligent_velocity.normalized() * speed
