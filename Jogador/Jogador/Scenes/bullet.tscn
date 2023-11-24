@@ -16,7 +16,7 @@ fill_to = Vector2(0.940367, 0.197248)
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6l6m"]
 radius = 6.0
-height = 52.0
+height = 56.0
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0d2ir"]
 
@@ -29,7 +29,6 @@ color = Color(0.607843, 0.0627451, 0.164706, 1)
 texture = SubResource("GradientTexture2D_fefep")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_v6l6m")
 
@@ -45,3 +44,5 @@ texture = SubResource("CanvasTexture_0d2ir")
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[connection signal="body_shape_entered" from="." to="." method="_on_body_shape_entered"]

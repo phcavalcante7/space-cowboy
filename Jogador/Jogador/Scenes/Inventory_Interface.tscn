@@ -27,5 +27,3 @@ layout_mode = 2
 
 [node name="TextureButton3" parent="GridContainer" instance=ExtResource("1_synug")]
 layout_mode = 2
-
-[node name="Node2D" type="Node2D" parent="."]

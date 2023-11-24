@@ -21,3 +21,7 @@ func set_property(new_pos, direction, new_scale, angulo):
 
 func update_velocity(delta):
 	position += bullet_direction * speed * delta
+
+
+func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int):
+	queue_free()

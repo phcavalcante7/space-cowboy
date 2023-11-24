@@ -1,6 +1,6 @@
 extends Camera2D
 
-const CAMERA_FORCE = 80
+const CAMERA_FORCE = 80 # quanto maior, menos se move
 
 @onready var player = get_parent()
 @onready var inventory = $Inventory

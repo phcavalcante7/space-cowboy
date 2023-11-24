@@ -33,6 +33,7 @@ func _physics_process(delta):
 func verif_dash(): # realiza o dash
 	if Input.is_action_just_pressed("move_dash") and !is_dash_cooling_down():
 		$Sounds.stream = load("res://Jogador/Assets/Sounds/dash_sound.wav")
+		$Sounds.volume_db = 5
 		$Sounds.play(0.0)
 		start_dash(DASH_DURATION)
 	
@@ -77,19 +78,17 @@ func is_looking_at(): # Muda a direção onde o personagem está olhando
 		$AnimatedSprite2D.flip_h = true
 	else:
 		$AnimatedSprite2D.flip_h = false
-	pass
 
 
 func mouse_direction() -> Vector2:
 	return global_position.direction_to(get_global_mouse_position())
 
 
-func get_mouse_distance():
-	return (get_global_mouse_position() - self.global_position).normalized()
-
-
 func firing():
 	if Input.is_action_just_pressed("mouse_left_click"):
+		$Sounds2.stream = load("res://Jogador/Assets/Sounds/laser-gun-81720.mp3")
+		$Sounds2.volume_db = -8
+		$Sounds2.play(0.0)
 		var new_bullet = bullet_fired.instantiate()
 		
 		var direction = (get_global_mouse_position() - $Shoot_Reference.global_position).normalized()

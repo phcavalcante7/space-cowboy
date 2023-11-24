@@ -207,6 +207,8 @@ libraries = {
 [node name="Sounds" type="AudioStreamPlayer2D" parent="."]
 attenuation = 0.366022
 
+[node name="Sounds2" type="AudioStreamPlayer2D" parent="."]
+
 [node name="Timers" type="Node2D" parent="."]
 
 [node name="Dash_lenght" type="Timer" parent="Timers"]
