@@ -4,7 +4,7 @@ const SPEED = 100.0
 
 @export var snowman_scene : PackedScene
 
-@onready var player = get_parent().get_parent().get_node("Player/Bart")
+@onready var player = get_parent().get_parent().get_node("PlayerNode/Player")
 var inRange = false
 var summoning = false
 var side
@@ -27,8 +27,7 @@ func _process(delta):
 			side = "LEFT"
 		if summoning == false:
 			get_node("AnimatedSprite2D").play("shooting")
-		velocity.x = 0
-		velocity.y = 0
+		velocity = Vector2.ZERO
 	else:
 		chase()
 	move_and_slide()
@@ -44,26 +43,22 @@ func chase():
 	velocity.y = direction.y * SPEED
 
 func _on_player_detection_body_entered(body):
-	if body.name == "Bart": 
+	if body.name == "Player": 
 		inRange = true
 
 func _on_player_detection_body_exited(body):
-	if body.name == "Bart": 
+	if body.name == "Player": 
 		inRange = false
 
 func evocando_snowman():
 	summoning = true
 	get_node("AnimatedSprite2D").play("summoning")
-	velocity.x = 0
-	velocity.y = 0
+	velocity = Vector2.ZERO
 	var snowman = snowman_scene.instantiate()
-	snowman.position.x = 0
-	snowman.position.y = 0
-	add_child(snowman)
+	snowman.position = self.global_position
+	get_parent().add_child(snowman)
 	
 	
-	
-
 func _on_timer_timeout():
 	evocando_snowman()
 	

@@ -7,7 +7,7 @@ const SPEED = 50.0
 var inRange = false
 var side
 var wall_verifier : RayCast2D
-@onready var player = get_parent().get_parent().get_parent().get_node("Player/Bart")
+@onready var player = get_parent().get_parent().get_parent().get_node("PlayerNode/Player")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -22,8 +22,6 @@ func _ready():
 func _process(delta):
 	var direction = player.position - self.position
 	direction = direction.normalized() 
-	
-	
 	if inRange == true:
 		if direction.x > 0:
 			get_node("AnimatedSprite2D").flip_h = true
@@ -32,8 +30,8 @@ func _process(delta):
 			get_node("AnimatedSprite2D").flip_h = false
 			side = "LEFT"
 		get_node("AnimatedSprite2D").play("shooting")
-		velocity.x = 10
-		velocity.y = 10
+		velocity.x = 0
+		velocity.y = 0
 	else:
 		chase()
 	move_and_slide()
@@ -57,8 +55,7 @@ func chase():
 	else:
 		get_node("AnimatedSprite2D").flip_h = true
 	get_node("AnimatedSprite2D").play("run")
-	velocity.x = direction.x * SPEED
-	velocity.y = direction.y * SPEED
+	velocity = direction * SPEED
 
 func _on_timer_timeout():
 	if inRange == true:
@@ -68,11 +65,11 @@ func _on_timer_timeout():
 
 
 func _on_player_detection_body_entered(body):
-	if body.name == "Bart": 
+	if body.name == "Player": 
 		inRange = true
 
 
 func _on_player_detection_body_exited(body):
-	if body.name == "Bart":  
+	if body.name == "Player":  
 		inRange = false
 		

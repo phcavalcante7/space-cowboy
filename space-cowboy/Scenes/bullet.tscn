@@ -1,13 +1,13 @@
 [gd_scene load_steps=4 format=3 uid="uid://d2npbrpsh0x0"]
 
-[ext_resource type="Script" path="res://Scripts/snowball.gd" id="1_6806j"]
-[ext_resource type="Texture2D" uid="uid://dccsh1lb4ekpp" path="res://assets/snowball.png" id="2_ufni6"]
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_clo7h"]
+[ext_resource type="Texture2D" uid="uid://cwr3uk81jpjm4" path="res://randomAssets/bullet.png" id="2_3ovl3"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_1o1me"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ufni6")
+"texture": ExtResource("2_3ovl3")
 }],
 "loop": true,
 "name": &"default",
@@ -15,10 +15,12 @@ animations = [{
 }]
 
 [node name="Bullet" type="Node2D"]
-scale = Vector2(0.913566, 0.884329)
-script = ExtResource("1_6806j")
+scale = Vector2(0.5, 0.484)
+script = ExtResource("1_clo7h")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-7.15256e-07, -2.38419e-07)
+scale = Vector2(0.615719, 0.636075)
 sprite_frames = SubResource("SpriteFrames_1o1me")
 
 [node name="RayCast2D" type="RayCast2D" parent="."]

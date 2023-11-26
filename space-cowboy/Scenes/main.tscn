@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://7r2n0p0c3yba"]
+[gd_scene load_steps=5 format=3 uid="uid://7r2n0p0c3yba"]
 
 [ext_resource type="PackedScene" uid="uid://76nqaqw5btn0" path="res://Scenes/bart.tscn" id="1_q0kuy"]
-[ext_resource type="PackedScene" uid="uid://dhajrmfxlhwxy" path="res://Scenes/wall.tscn" id="4_5b3b6"]
-[ext_resource type="PackedScene" uid="uid://dgccbeg83cai8" path="res://Scenes/yeti_spawn.tscn" id="4_8di7f"]
-[ext_resource type="PackedScene" uid="uid://b0ou0jtcq0812" path="res://Scenes/bruxa.tscn" id="5_x0pp5"]
+[ext_resource type="PackedScene" uid="uid://digx65pyynjpl" path="res://Scenes/king_frostbite.tscn" id="2_xqcfc"]
 [ext_resource type="Texture2D" uid="uid://cq5ni6gp7trh4" path="res://assets/lifeheart.png" id="6_476cr"]
+
+[sub_resource type="NavigationPolygon" id="NavigationPolygon_dcq3w"]
+vertices = PackedVector2Array(1179, 675, -24, 682, -15, -19, 1178, -22)
+polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(1178, -22, -15, -19, -24, 682, 1179, 675)])
 
 [node name="Main" type="Node2D"]
 position = Vector2(0, -2)
@@ -15,18 +18,19 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(28.7965, 16.379)
 
-[node name="Player" type="Node2D" parent="."]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+navigation_polygon = SubResource("NavigationPolygon_dcq3w")
 
-[node name="Bart" parent="Player" instance=ExtResource("1_q0kuy")]
-position = Vector2(47, 40)
+[node name="PlayerNode" type="Node2D" parent="."]
+
+[node name="Player" parent="PlayerNode" instance=ExtResource("1_q0kuy")]
+texture_filter = 1
+position = Vector2(43, 34)
 
 [node name="Mobs" type="Node2D" parent="."]
 
-[node name="Bruxa" parent="Mobs" instance=ExtResource("5_x0pp5")]
-position = Vector2(760, 406)
-
-[node name="YetiSpawn" parent="Mobs" instance=ExtResource("4_8di7f")]
-scale = Vector2(1.1639, 0.984468)
+[node name="King-Frostbite" parent="Mobs" instance=ExtResource("2_xqcfc")]
+position = Vector2(557, 294)
 
 [node name="HP" type="Node2D" parent="."]
 position = Vector2(1091, 7)
@@ -42,7 +46,3 @@ texture = ExtResource("6_476cr")
 [node name="Lifeheart3" type="Sprite2D" parent="HP"]
 position = Vector2(36, 26)
 texture = ExtResource("6_476cr")
-
-[node name="WALL" parent="." instance=ExtResource("4_5b3b6")]
-position = Vector2(551, 273)
-scale = Vector2(2.49992, 6.14159)

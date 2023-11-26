@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 
-const SPEED = 200.0
+
 const JUMP_VELOCITY = -400.0
 
 
@@ -14,6 +14,7 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 var dash_lenght = 0.5  #duração do dash
 var is_dashing = false 
 var hp = 6
+var speed = 200.0
 
 func on_dash_ends():
 	is_dashing = false
@@ -31,20 +32,20 @@ func _physics_process(delta):
 		anim.play("run")
 		
 		if Input.is_action_just_pressed("move_dash"):
-			velocity.x = direction * SPEED * 2
-			velocity.y = direction2 * SPEED * 2
+			velocity.x = direction * speed * 2
+			velocity.y = direction2 * speed * 2
 		
 		if Input.is_action_pressed("move_left"):
 			get_node("AnimatedSprite2D").flip_h = true
 		elif Input.is_action_pressed("move_right"):
 			get_node("AnimatedSprite2D").flip_h = false
 			
-		velocity.x = direction * SPEED
-		velocity.y = direction2 * SPEED
-		velocity = velocity.normalized() * SPEED
+		velocity.x = direction * speed
+		velocity.y = direction2 * speed
+		velocity = velocity.normalized() * speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		velocity.x = move_toward(velocity.x, 0, speed)
+		velocity.y = move_toward(velocity.y, 0, speed)
 		anim.play("idle")
 		
 	move_and_slide()

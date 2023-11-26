@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://dxrj3u52hv501"]
+
+[ext_resource type="Texture2D" uid="uid://cwr3uk81jpjm4" path="res://randomAssets/bullet.png" id="1_y2gio"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2nt7n"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7q4hi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_y2gio")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FreezedArea" type="Node2D"]
+scale = Vector2(25, 25)
+
+[node name="Area" type="Area2D" parent="."]
+scale = Vector2(1.5, 1.5)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area"]
+shape = SubResource("RectangleShape2D_2nt7n")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_7q4hi")
