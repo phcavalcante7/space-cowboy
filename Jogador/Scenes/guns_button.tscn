@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dbkawtuauxxfy"]
+
+[ext_resource type="Texture2D" uid="uid://bibnehsp3ls6s" path="res://Jogador/Assets/pixil-frame-0.png" id="1_8cvyu"]
+[ext_resource type="Texture2D" uid="uid://0ivgl2kin3sd" path="res://Jogador/Assets/pixil-frame-0 (1).png" id="2_qe2p4"]
+[ext_resource type="Script" path="res://Jogador/Scripts/Button_Guns.gd" id="3_w7mqc"]
+
+[node name="TextureButton" type="TextureButton"]
+texture_filter = 1
+offset_right = 32.0
+offset_bottom = 32.0
+scale = Vector2(3, 3)
+toggle_mode = true
+texture_normal = ExtResource("1_8cvyu")
+texture_pressed = ExtResource("2_qe2p4")
+texture_hover = ExtResource("2_qe2p4")
+script = ExtResource("3_w7mqc")
+
+[node name="Audios" type="AudioStreamPlayer2D" parent="."]
+scale = Vector2(3, 3)
+attenuation = 0.965936
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="pressed" from="." to="." method="_on_pressed"]
