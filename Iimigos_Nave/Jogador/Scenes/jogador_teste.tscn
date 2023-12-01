@@ -1,0 +1,49 @@
+[gd_scene load_steps=8 format=3 uid="uid://xmhm825pdwm6"]
+
+[ext_resource type="PackedScene" uid="uid://ct1jkcxq0v8cf" path="res://Jogador/Scenes/Player.tscn" id="1_0gchm"]
+[ext_resource type="PackedScene" uid="uid://q2djwiek86b2" path="res://Jogador/Scenes/Inventory_Interface.tscn" id="2_awgs6"]
+[ext_resource type="Script" path="res://Jogador/Scripts/Player_Camera.gd" id="2_sy48l"]
+[ext_resource type="PackedScene" uid="uid://bccnsrfsp71jm" path="res://Jogador/Scenes/bullet.tscn" id="4_2e28h"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_i6s8s"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ehk5i"]
+size = Vector2(23, 131)
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_vkboc"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Floor" type="Sprite2D" parent="."]
+self_modulate = Color(0.298039, 0.388235, 1, 1)
+show_behind_parent = true
+position = Vector2(575.75, 323.75)
+scale = Vector2(1152.5, 648.5)
+texture = SubResource("CanvasTexture_i6s8s")
+
+[node name="Player" parent="." instance=ExtResource("1_0gchm")]
+bullet_fired = ExtResource("4_2e28h")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+position_smoothing_speed = 0.0
+script = ExtResource("2_sy48l")
+
+[node name="Inventory" parent="Player/Camera2D" instance=ExtResource("2_awgs6")]
+offset_left = 316.0
+offset_top = 238.0
+offset_right = 316.0
+offset_bottom = 238.0
+scale = Vector2(0.8, 0.8)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(368, 108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(0.5, 14.5)
+shape = SubResource("RectangleShape2D_ehk5i")
+
+[node name="Sprite2D" type="Sprite2D" parent="Wall"]
+modulate = Color(0.180392, 0.180392, 0.180392, 1)
+position = Vector2(0.499996, 14.5)
+scale = Vector2(17, 125)
+texture = SubResource("CanvasTexture_vkboc")

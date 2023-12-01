@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://cae4xlqowtsbo"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_kny8i"]
+blend_mode = 1
+
+[sub_resource type="Curve" id="Curve_8ydhm"]
+_data = [Vector2(0.15812, 0.4), 0.0, 0.0, 0, 0, Vector2(0.521368, 0.242105), 0.0, 0.0, 0, 0, Vector2(0.854701, 0.221053), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ad7o1"]
+curve = SubResource("Curve_8ydhm")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_1co5r"]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+particle_flag_disable_z = true
+spread = 165.0
+flatness = 0.26
+gravity = Vector3(0, 0, 0)
+initial_velocity_min = 35.0
+initial_velocity_max = 50.0
+angular_velocity_min = -100.47
+angular_velocity_max = 413.02
+orbit_velocity_min = 0.0
+orbit_velocity_max = 0.0
+tangential_accel_min = -18.6
+tangential_accel_max = 21.71
+damping_min = 4.651
+damping_max = 100.0
+scale_curve = SubResource("CurveTexture_ad7o1")
+turbulence_enabled = true
+turbulence_noise_strength = 6.59
+turbulence_noise_scale = 10.0
+turbulence_noise_speed_random = 0.67
+
+[sub_resource type="Gradient" id="Gradient_3bo81"]
+offsets = PackedFloat32Array(0.0941704, 0.233184, 0.35426, 0.659193)
+colors = PackedColorArray(0.0941176, 0.419608, 0.941176, 0.372549, 0.0666667, 0.513726, 0.956863, 0.392157, 0, 0.74902, 1, 0.752941, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_0hand"]
+gradient = SubResource("Gradient_3bo81")
+width = 512
+fill = 1
+fill_from = Vector2(0.5, 0.636364)
+fill_to = Vector2(0.527972, 0.587413)
+
+[node name="GPUParticles2D" type="GPUParticles2D"]
+modulate = Color(0.988235, 0.956863, 0.996078, 1)
+material = SubResource("CanvasItemMaterial_kny8i")
+position = Vector2(109, 64)
+amount = 2
+process_material = SubResource("ParticleProcessMaterial_1co5r")
+texture = SubResource("GradientTexture2D_0hand")
+lifetime = 0.6
+fixed_fps = 10
+trail_enabled = true
+trail_lifetime = 0.2

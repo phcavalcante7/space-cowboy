@@ -1,19 +1,23 @@
-[gd_scene load_steps=6 format=3 uid="uid://cipcow4i823hs"]
+[gd_scene load_steps=9 format=3 uid="uid://cipcow4i823hs"]
 
-[ext_resource type="PackedScene" uid="uid://byi687xq20aa2" path="res://Enemies/Scenes/enemy_chase.tscn" id="1_ll7s2"]
+[ext_resource type="PackedScene" uid="uid://bccnsrfsp71jm" path="res://Jogador/Scenes/bullet.tscn" id="2_gtom5"]
 [ext_resource type="PackedScene" uid="uid://ct1jkcxq0v8cf" path="res://Jogador/Scenes/Player.tscn" id="2_nc0uq"]
 [ext_resource type="PackedScene" uid="uid://o1rp1svnc0u3" path="res://Enemies/Scenes/Patrulheiro.tscn" id="3_orco8"]
+[ext_resource type="Script" path="res://Jogador/Scripts/Player_Camera.gd" id="3_vgat5"]
+[ext_resource type="PackedScene" uid="uid://c6qwnhr2u3qyw" path="res://Enemies/Monitor/Scenes/monitor_inimigo.tscn" id="4_6l5gs"]
+[ext_resource type="PackedScene" uid="uid://q2djwiek86b2" path="res://Jogador/Scenes/Inventory_Interface.tscn" id="4_gajq7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_sl7cr"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5ga1h"]
-vertices = PackedVector2Array(1171, -32, 1167, 671, -10, 661, -1, -4)
+vertices = PackedVector2Array(1266, -50, 1250, 754, -82, 754, -69, -60)
 polygons = Array[PackedInt32Array]([PackedInt32Array(0, 1, 2, 3)])
-outlines = Array[PackedVector2Array]([PackedVector2Array(-1, -4, -10, 661, 1167, 671, 1171, -32)])
+outlines = Array[PackedVector2Array]([PackedVector2Array(-69, -60, -82, 754, 1250, 754, 1266, -50)])
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Floor" type="Sprite2D" parent="."]
+modulate = Color(0.227451, 0.203922, 0, 1)
 show_behind_parent = true
 position = Vector2(577.75, 323.75)
 scale = Vector2(1156.5, 648.5)
@@ -24,11 +28,29 @@ navigation_polygon = SubResource("NavigationPolygon_5ga1h")
 
 [node name="Player" parent="." instance=ExtResource("2_nc0uq")]
 position = Vector2(553, 323)
+bullet_fired = ExtResource("2_gtom5")
+
+[node name="Camera2D" type="Camera2D" parent="Player"]
+script = ExtResource("3_vgat5")
+
+[node name="Inventory" parent="Player/Camera2D" instance=ExtResource("4_gajq7")]
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = 259.0
+offset_top = 222.0
+offset_right = 259.0
+offset_bottom = 222.0
+grow_horizontal = 0
+grow_vertical = 0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 
 [node name="Inimigos" type="Node2D" parent="."]
 
 [node name="Patrulheiro" parent="Inimigos" instance=ExtResource("3_orco8")]
 position = Vector2(745, 89)
 
-[node name="Enemy_Chase" parent="Inimigos" instance=ExtResource("1_ll7s2")]
-position = Vector2(59, 67)
+[node name="CharacterBody2D" parent="Inimigos" instance=ExtResource("4_6l5gs")]
+position = Vector2(951, 217)
+scale = Vector2(3, 3)

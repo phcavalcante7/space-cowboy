@@ -101,8 +101,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w56ve"]
-radius = 20.0
-height = 56.0
+radius = 18.0
+height = 58.0
 
 [sub_resource type="Animation" id="Animation_0sb43"]
 length = 0.001
@@ -194,7 +194,8 @@ animation = &"idle"
 autoplay = "idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-2, 4)
+visible = false
+position = Vector2(-2, 5)
 shape = SubResource("CapsuleShape2D_w56ve")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
@@ -203,18 +204,25 @@ libraries = {
 "": SubResource("AnimationLibrary_rvvwg")
 }
 
-[node name="Dash_lenght" type="Timer" parent="."]
+[node name="Sounds" type="AudioStreamPlayer2D" parent="."]
+attenuation = 0.366022
+
+[node name="Sounds2" type="AudioStreamPlayer2D" parent="."]
+
+[node name="Timers" type="Node2D" parent="."]
+
+[node name="Dash_lenght" type="Timer" parent="Timers"]
 wait_time = 0.5
 one_shot = true
 
-[node name="Dash_cooldown" type="Timer" parent="."]
+[node name="Dash_cooldown" type="Timer" parent="Timers"]
 one_shot = true
 
-[node name="Ghost_Timer" type="Timer" parent="."]
+[node name="Ghost_Timer" type="Timer" parent="Timers"]
 wait_time = 0.1
 one_shot = true
 
-[node name="Node2D" type="Node2D" parent="."]
-visible = false
+[node name="Shoot_Reference" type="Marker2D" parent="."]
+position = Vector2(0, 6)
 
-[connection signal="timeout" from="Ghost_Timer" to="." method="_on_ghost_timer_timeout"]
+[connection signal="timeout" from="Timers/Ghost_Timer" to="." method="_on_ghost_timer_timeout"]

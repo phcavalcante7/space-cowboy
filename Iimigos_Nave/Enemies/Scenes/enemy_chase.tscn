@@ -1,41 +1,87 @@
-[gd_scene load_steps=6 format=3 uid="uid://byi687xq20aa2"]
+[gd_scene load_steps=12 format=3 uid="uid://byi687xq20aa2"]
 
 [ext_resource type="Script" path="res://Enemies/Scripts/Enemy_Chase.gd" id="1_6j6fx"]
-[ext_resource type="Texture2D" uid="uid://cdv1ju47odov8" path="res://Enemies/Enemies_Assets/Inimigo_monitor.png" id="1_cwkjf"]
+[ext_resource type="Texture2D" uid="uid://bgvgd52pnikyv" path="res://Enemies/Enemies_Assets/Robo_Monitor.png" id="2_4yav3"]
 [ext_resource type="PackedScene" uid="uid://bqdgi2yqe2mh1" path="res://Enemies/Scenes/raycastsAI.tscn" id="3_t5y21"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3uh56"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pf41u"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7tmvp"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eyah7"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a6d2t"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c0fru"]
+atlas = ExtResource("2_4yav3")
+region = Rect2(640, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_x25u8"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("1_cwkjf")
+"texture": SubResource("AtlasTexture_3uh56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pf41u")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7tmvp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eyah7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a6d2t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c0fru")
 }],
 "loop": true,
-"name": &"default",
+"name": &"run",
 "speed": 5.0
 }]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_pwq4a"]
-size = Vector2(112, 66)
+[sub_resource type="CircleShape2D" id="CircleShape2D_fn4ui"]
+radius = 53.7645
 
 [node name="Enemy_Chase" type="CharacterBody2D"]
 scale = Vector2(0.8, 0.8)
+collision_layer = 3
+collision_mask = 3
 script = ExtResource("1_6j6fx")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(0.75, 0.75)
+position = Vector2(-3.75, 23.75)
+scale = Vector2(3.2832, 3.2832)
 sprite_frames = SubResource("SpriteFrames_x25u8")
+animation = &"run"
+autoplay = "run"
+frame_progress = 0.600146
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 visible = false
-position = Vector2(3, -13)
-shape = SubResource("RectangleShape2D_pwq4a")
+position = Vector2(1.25, -12.5)
+shape = SubResource("CircleShape2D_fn4ui")
 one_way_collision_margin = 5.6
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
 debug_enabled = true
 
 [node name="Raycasts" parent="." instance=ExtResource("3_t5y21")]
+visible = false
 position = Vector2(2, -14)
-scale = Vector2(1.5, 1.5)
+scale = Vector2(2.5, 2.5)

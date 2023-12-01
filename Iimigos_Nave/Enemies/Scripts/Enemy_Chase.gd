@@ -3,9 +3,11 @@ extends CharacterBody2D
 const STEERING_INTENSITY = 1000
 
 var speed = 150
+var break_force: float = 1.0
 @onready var target = get_parent().get_parent().get_node("Player") # Jogador
 @onready var navigation_agent = get_node("NavigationAgent2D")
 @onready var smart_velocity = get_node("Raycasts")
+@onready var anim = get_node("AnimationPlayer")
 
 func _ready():
 	navigation_agent.path_desired_distance = 4
@@ -14,15 +16,20 @@ func _ready():
 
 
 func _physics_process(delta):
-	if navigation_agent.distance_to_target() < 50:
+	anim.play("Run")
+	if (self.global_position - target.global_position).length() < 100:
 		set_target_position(target.position)
-		print("navigation_stopped")
-		return
-		
-	set_target_position(target.position)
-	#print(velocity.length())
-	velocity = await update_velocity(delta)
-	move_and_slide()
+		print(velocity)
+		if velocity > Vector2.ZERO:
+			break_force -= 0.001
+			velocity *= break_force
+		move_and_collide(velocity * 0.002)
+	else:
+		break_force = 1
+		set_target_position(target.position)
+		look_direction()
+		velocity = await update_velocity(delta)
+		move_and_slide()
 
 
 func get_target_direction() -> Vector2:
@@ -51,3 +58,9 @@ func navigation_setup():
 	set_target_position(target.position)
 	velocity = (target.position - self.global_position).normalized() * speed
 
+
+func look_direction():
+	if get_target_direction().x > 0:
+		$Sprite2D.flip_h = true
+	else:
+		$Sprite2D.flip_h = false
