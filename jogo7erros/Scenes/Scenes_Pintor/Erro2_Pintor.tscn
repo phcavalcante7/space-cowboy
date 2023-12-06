@@ -1,0 +1,77 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Pintor/veio_pintor_erros2.png" type="Texture" id=1]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 12.5529, 7.5 )
+
+[sub_resource type="CircleShape2D" id=2]
+radius = 7.0
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1.89954, 11.2945 )
+
+[sub_resource type="CapsuleShape2D" id=4]
+radius = 4.19188
+height = 16.3479
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 5.0
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 13, 22 )
+
+[node name="Erro2_Pintor" type="Sprite"]
+position = Vector2( 713, 284 )
+texture = ExtResource( 1 )
+
+[node name="Erro_1" type="Area2D" parent="."]
+position = Vector2( -26, 179 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_1"]
+position = Vector2( -0.207947, -2.78894 )
+rotation = 0.991589
+shape = SubResource( 1 )
+
+[node name="Erro_2" type="Area2D" parent="."]
+position = Vector2( 262, 46 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_2"]
+position = Vector2( 0, -5 )
+shape = SubResource( 2 )
+
+[node name="Erro_3" type="Area2D" parent="."]
+position = Vector2( 137, -40 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_3"]
+position = Vector2( -5.86945, -1.67421 )
+rotation = 0.398211
+scale = Vector2( 1, 1 )
+shape = SubResource( 3 )
+
+[node name="Erro_4" type="Area2D" parent="."]
+position = Vector2( -126, -31 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_4"]
+position = Vector2( 4, 1 )
+rotation = -1.3021
+shape = SubResource( 4 )
+
+[node name="Erro_5" type="Area2D" parent="."]
+position = Vector2( -214, 60 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Erro_5"]
+polygon = PoolVector2Array( -2, -37, 1, -30, 3, -16, 9, 28, 8, 32, -12, -9 )
+
+[node name="Erro_6" type="Area2D" parent="."]
+position = Vector2( -195, 108 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_6"]
+shape = SubResource( 5 )
+
+[node name="Erro_7" type="Area2D" parent="."]
+position = Vector2( -280, 32 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_7"]
+position = Vector2( 1, 3 )
+shape = SubResource( 6 )
