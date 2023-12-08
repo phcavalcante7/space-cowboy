@@ -2,26 +2,24 @@ extends Node2D
 
 var difficult = Data_Difficult.difficult_selected
 var erros : Array
-var tempo_restante :int
-var gameover = false
-var teste1 = preload("res://Scenes/Scenes_Pintor/Erro1_Pintor.tscn").instance()
-
+onready var vitoria_scene : PackedScene = preload("res://Scenes/VendeuOuPerdeu/Vitoria.tscn")
+var winner = false
 
 func _ready():
-	add_child(teste1)
-	def_timer()
+	Data_Difficult.find_errors = 0
 	define_image()
-	var texto = str(int(tempo_restante))
-	$Cronometro/Tempo.text = texto
-	$Cronometro/Timer.set_wait_time(1)
-	$Cronometro/Timer.start()
 
 func _process(delta):
-	if gameover:
-		return
-	ver_gameover()
+	if winner:
+		return;
+	ver_winner()
 	pass
 
+func ver_winner():
+	if Data_Difficult.find_errors >= 7:
+		winner = true
+		var end_game = vitoria_scene.instance()
+		add_child(end_game)
 
 func define_image():
 	var random = RandomNumberGenerator.new()
@@ -41,25 +39,4 @@ func teste(viewport, event, shape_idx):
 	if event is InputEventMouseButton and event.pressed:
 		print("Clicou na área! Evento:")
 
-func def_timer():
-	if difficult == 0: # easy
-		tempo_restante = 240 # 3 minutes
-	
-	elif difficult == 1: # medium
-		tempo_restante = 120 # 2 minutes
-	
-	else : # hard
-		tempo_restante = 10 # 1 minute
 
-
-func ver_gameover():
-	if tempo_restante <= 0:
-		gameover = true
-
-
-func _on_Timer_timeout():
-	if tempo_restante > 0:
-		tempo_restante -= 1
-		var texto = str(int(tempo_restante))
-		$Cronometro/Tempo.text = texto
-	pass 

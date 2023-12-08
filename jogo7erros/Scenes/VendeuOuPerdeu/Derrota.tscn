@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Scripts/Derrota.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Interface/derrota.png" type="Texture" id=2]
+
+[node name="Derrota" type="Node2D"]
+script = ExtResource( 1 )
+
+[node name="Sprite" type="Sprite" parent="."]
+position = Vector2( 972, 525 )
+scale = Vector2( 0.9, 0.9 )
+texture = ExtResource( 2 )
+
+[node name="Menu" type="Button" parent="."]
+show_behind_parent = true
+margin_left = 622.0
+margin_top = 625.0
+margin_right = 954.0
+margin_bottom = 830.0
+
+[node name="Restart" type="Button" parent="."]
+show_behind_parent = true
+margin_left = 982.0
+margin_top = 625.0
+margin_right = 1314.0
+margin_bottom = 830.0
+
+[connection signal="pressed" from="Menu" to="." method="_on_Menu_pressed"]
+[connection signal="pressed" from="Restart" to="." method="_on_Restart_pressed"]

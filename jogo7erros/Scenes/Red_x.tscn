@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/kisspng-red-x-x-mark-computer-icons-clip-art-red-x-png-5ab19106316800.2072037015215864382024.png" type="Texture" id=1]
+
+[node name="Red_x" type="Sprite"]
+scale = Vector2( 0.1, 0.1 )
+z_index = 1
+texture = ExtResource( 1 )

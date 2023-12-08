@@ -27,6 +27,7 @@ visible = false
 position = Vector2( 1320, 540 )
 
 [node name="Erro3_Borboleta" parent="Erros" instance=ExtResource( 4 )]
+visible = false
 position = Vector2( 1320, 540 )
 
 [node name="Interface" parent="." instance=ExtResource( 5 )]

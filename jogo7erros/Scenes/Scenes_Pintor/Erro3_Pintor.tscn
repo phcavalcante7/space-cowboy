@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Assets/Pintor/veio_pintor_erros3.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Srcipt_Erros.gd" type="Script" id=2]
+[ext_resource path="res://Scripts/Script_erro_individual.gd" type="Script" id=3]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 23.5, 10 )
@@ -30,6 +31,7 @@ script = ExtResource( 2 )
 
 [node name="Erro_1" type="Area2D" parent="."]
 position = Vector2( -73, 191 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_1"]
 position = Vector2( 3, 10 )
@@ -38,6 +40,7 @@ shape = SubResource( 1 )
 
 [node name="Erro_2" type="Area2D" parent="."]
 position = Vector2( 159, 95 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_2"]
 position = Vector2( -5, 5 )
@@ -46,6 +49,7 @@ shape = SubResource( 2 )
 
 [node name="Erro_3" type="Area2D" parent="."]
 position = Vector2( -231, -74 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_3"]
 position = Vector2( 1, 0 )
@@ -53,6 +57,7 @@ shape = SubResource( 3 )
 
 [node name="Erro_4" type="Area2D" parent="."]
 position = Vector2( 197, -89 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_4"]
 position = Vector2( 0, -1 )
@@ -61,6 +66,7 @@ shape = SubResource( 4 )
 
 [node name="Erro_5" type="Area2D" parent="."]
 position = Vector2( 238, -58 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_5"]
 position = Vector2( -1, 3 )
@@ -69,12 +75,14 @@ shape = SubResource( 5 )
 
 [node name="Erro_6" type="Area2D" parent="."]
 position = Vector2( 96, 189 )
+script = ExtResource( 3 )
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Erro_6"]
 polygon = PoolVector2Array( -27, 5, -13, -1, -2, -4, 10, -6, 24, -6, 47, -7, 54, -6, 55, 4, 40, 4, 18, 5, 3, 7, -20, 14, -33, 25 )
 
 [node name="Erro_7" type="Area2D" parent="."]
 position = Vector2( -206, -97 )
+script = ExtResource( 3 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_7"]
 shape = SubResource( 6 )

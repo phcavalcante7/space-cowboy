@@ -9,6 +9,7 @@ onready var difficults = get_child(2)
 
 
 func _ready():
+	Data_Difficult.find_errors = 0
 	pass
 
 
