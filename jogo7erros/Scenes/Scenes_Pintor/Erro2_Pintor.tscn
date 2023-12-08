@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://Assets/Pintor/veio_pintor_erros2.png" type="Texture" id=1]
+[ext_resource path="res://Scripts/Srcipt_Erros.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.5529, 7.5 )
@@ -24,6 +25,7 @@ extents = Vector2( 13, 22 )
 [node name="Erro2_Pintor" type="Sprite"]
 position = Vector2( 713, 284 )
 texture = ExtResource( 1 )
+script = ExtResource( 2 )
 
 [node name="Erro_1" type="Area2D" parent="."]
 position = Vector2( -26, 179 )
@@ -46,7 +48,6 @@ position = Vector2( 137, -40 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Erro_3"]
 position = Vector2( -5.86945, -1.67421 )
 rotation = 0.398211
-scale = Vector2( 1, 1 )
 shape = SubResource( 3 )
 
 [node name="Erro_4" type="Area2D" parent="."]

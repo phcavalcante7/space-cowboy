@@ -1,23 +1,26 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://Assets/Pintor/veio_pintor_default.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Scenes_Pintor/Erro1_Pintor.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Scenes/Scenes_Pintor/Erro3_Pintor.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Scenes/Scenes_Pintor/Erro2_Pintor.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Scenes/Fundo.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Scenes/Interface_Jogo.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Scripts/Cena_Pintor.gd" type="Script" id=7]
+[ext_resource path="res://Assets/Interface/Kenney High Square.ttf" type="DynamicFontData" id=8]
 
-[sub_resource type="Gradient" id=1]
-offsets = PoolRealArray( 0.219895, 0.549738, 0.874346 )
-colors = PoolColorArray( 0.12549, 0.133333, 0.796078, 1, 0.110504, 0.527637, 0.832031, 1, 0.124512, 0.135017, 0.796875, 1 )
+[sub_resource type="DynamicFont" id=1]
+size = 50
+font_data = ExtResource( 8 )
 
-[sub_resource type="GradientTexture" id=2]
-gradient = SubResource( 1 )
+[sub_resource type="DynamicFont" id=2]
+size = 50
+font_data = ExtResource( 8 )
 
 [node name="Cena_Pintor" type="Node2D"]
+script = ExtResource( 7 )
 
-[node name="Sprite" type="Sprite" parent="."]
-position = Vector2( 785, 545.75 )
-scale = Vector2( 1.7666, 1092.5 )
-texture = SubResource( 2 )
+[node name="Fundo" parent="." instance=ExtResource( 5 )]
 
 [node name="Pintor_Original" type="Sprite" parent="."]
 position = Vector2( 600, 540 )
@@ -25,6 +28,27 @@ texture = ExtResource( 1 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2( 962, 543 )
+
+[node name="Interface" parent="." instance=ExtResource( 6 )]
+
+[node name="Cronometro" type="Node2D" parent="."]
+
+[node name="Segundos" type="Label" parent="Cronometro"]
+margin_left = 1634.0
+margin_top = 166.0
+margin_right = 1786.0
+margin_bottom = 211.0
+custom_fonts/font = SubResource( 1 )
+text = "segundos"
+
+[node name="Tempo" type="Label" parent="Cronometro"]
+margin_left = 1547.0
+margin_top = 166.0
+margin_right = 1587.0
+margin_bottom = 211.0
+custom_fonts/font = SubResource( 2 )
+
+[node name="Timer" type="Timer" parent="Cronometro"]
 
 [node name="Erros" type="Node2D" parent="."]
 
@@ -38,4 +62,7 @@ visible = false
 position = Vector2( 1320, 540 )
 
 [node name="Erro3_Pintor" parent="Erros" instance=ExtResource( 3 )]
+visible = false
 position = Vector2( 1320, 540 )
+
+[connection signal="timeout" from="Cronometro/Timer" to="." method="_on_Timer_timeout"]

@@ -13,3 +13,5 @@ func _process(delta):
 
 func get_erros() -> Array:
 	return array_erros
+
+
