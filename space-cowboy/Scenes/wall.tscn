@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhajrmfxlhwxy"]
+
+[ext_resource type="Texture2D" uid="uid://cwr3uk81jpjm4" path="res://randomAssets/bullet.png" id="1_iyxph"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wm7sw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_v60wb"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_iyxph")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WALL" type="CharacterBody2D"]
+scale = Vector2(1.2877, 1.38041)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(1.56582, 1.59192)
+shape = SubResource("RectangleShape2D_wm7sw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_v60wb")
