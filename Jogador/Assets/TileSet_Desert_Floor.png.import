@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf0q7j8x2rn7u"
-path="res://.godot/imported/Bart Wayne first sprite (3 rows).png-6ee963ba4b013af57f525a162aa67558.ctex"
+uid="uid://beb38atedqdfu"
+path="res://.godot/imported/TileSet_Desert_Floor.png-e6f547875f436c1cfdfc6d7e7d17c238.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bart/Bart Wayne first sprite (3 rows).png"
-dest_files=["res://.godot/imported/Bart Wayne first sprite (3 rows).png-6ee963ba4b013af57f525a162aa67558.ctex"]
+source_file="res://Assets/TileSet_Desert_Floor.png"
+dest_files=["res://.godot/imported/TileSet_Desert_Floor.png-e6f547875f436c1cfdfc6d7e7d17c238.ctex"]
 
 [params]
 

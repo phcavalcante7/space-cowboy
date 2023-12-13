@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cf0q7j8x2rn7u"
-path="res://.godot/imported/Bart Wayne first sprite (3 rows).png-6ee963ba4b013af57f525a162aa67558.ctex"
+uid="uid://ckocexaepjct5"
+path="res://.godot/imported/white_glowing_circle.png-7c5c907c5a64a7177f91ac956fb5b0ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Bart/Bart Wayne first sprite (3 rows).png"
-dest_files=["res://.godot/imported/Bart Wayne first sprite (3 rows).png-6ee963ba4b013af57f525a162aa67558.ctex"]
+source_file="res://Assets/white_glowing_circle.png"
+dest_files=["res://.godot/imported/white_glowing_circle.png-7c5c907c5a64a7177f91ac956fb5b0ee.ctex"]
 
 [params]
 

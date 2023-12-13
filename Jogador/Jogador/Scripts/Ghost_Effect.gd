@@ -1,5 +1,6 @@
 extends AnimatedSprite2D
 
+#@onready var bart_ghost_anim = get_node("ghost")
 
 func _ready():
 	ghosthing()

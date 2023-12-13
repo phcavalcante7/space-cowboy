@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://bxro7gjwo4iw7"]
+
+[ext_resource type="Texture2D" uid="uid://6pasl5jto3vh" path="res://icon.svg" id="1_1mqnm"]
+[ext_resource type="Script" path="res://Scripts/bullet_tentaculo_rotation.gd" id="1_vpa33"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_20w5u"]
+size = Vector2(27.5, 24.75)
+
+[node name="Node2D" type="Node2D"]
+position = Vector2(6, 8)
+script = ExtResource("1_vpa33")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(34, 16.5)
+scale = Vector2(0.21875, 0.195313)
+texture = ExtResource("1_1mqnm")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(34, 16)
+shape = SubResource("RectangleShape2D_20w5u")
+
+[node name="Timer" type="Timer" parent="."]
+
+[node name="Timer2" type="Timer" parent="."]
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered" flags=18]
