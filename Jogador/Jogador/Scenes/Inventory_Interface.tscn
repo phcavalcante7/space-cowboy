@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://q2djwiek86b2"]
+[gd_scene load_steps=3 format=3 uid="uid://q2djwiek86b2"]
 
 [ext_resource type="PackedScene" uid="uid://dbkawtuauxxfy" path="res://Jogador/Scenes/guns_button.tscn" id="1_synug"]
+[ext_resource type="Script" path="res://Jogador/Scripts/S_GridContainer.gd" id="1_un00c"]
 
 [node name="Inventory" type="Control"]
 layout_mode = 3
@@ -18,6 +19,7 @@ offset_right = 104.0
 offset_bottom = 32.0
 scale = Vector2(3, 3)
 columns = 3
+script = ExtResource("1_un00c")
 
 [node name="TextureButton" parent="GridContainer" instance=ExtResource("1_synug")]
 layout_mode = 2

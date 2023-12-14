@@ -1,9 +1,10 @@
-[gd_scene load_steps=22 format=3 uid="uid://ct1jkcxq0v8cf"]
+[gd_scene load_steps=23 format=3 uid="uid://ct1jkcxq0v8cf"]
 
 [ext_resource type="Script" path="res://Jogador/Scripts/CharacterBody2D.gd" id="1_1fpwl"]
 [ext_resource type="PackedScene" uid="uid://cisyb23r5wlju" path="res://Jogador/Scenes/Ghost_Effect.tscn" id="2_v1k0g"]
 [ext_resource type="Texture2D" uid="uid://cf0q7j8x2rn7u" path="res://Jogador/Assets/Bart/Bart Wayne first sprite (3 rows).png" id="3_rvcdp"]
 [ext_resource type="Texture2D" uid="uid://b7peqrtgfgg2x" path="res://Jogador/Assets/Bart/Bart Wayne first sprite (1 row).png" id="4_kpj0j"]
+[ext_resource type="Texture2D" uid="uid://ceb53b1ydxkqk" path="res://Jogador/Assets/gun_test_1.png" id="5_5w7nx"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac0pt"]
 atlas = ExtResource("3_rvcdp")
@@ -118,6 +119,30 @@ tracks/0/keys = {
 "update": 1,
 "values": [1]
 }
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Hands/Left_hand:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(10, 18)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands/Right_hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-12, 15)]
+}
 
 [sub_resource type="Animation" id="Animation_5pboc"]
 resource_name = "idle"
@@ -173,6 +198,30 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hands/Left_hand:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(10, 15), Vector2(10, 15), Vector2(10, 18), Vector2(10, 18), Vector2(10, 15), Vector2(10, 15), Vector2(10, 18), Vector2(10, 18)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hands/Right_hand:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-9, 16), Vector2(-9, 16), Vector2(-9, 19), Vector2(-9, 19), Vector2(-9, 16), Vector2(-10, 15), Vector2(-9, 19), Vector2(-9, 19)]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_rvvwg"]
 _data = {
@@ -190,11 +239,11 @@ ghost_effect = ExtResource("2_v1k0g")
 texture_filter = 1
 scale = Vector2(2.5, 2.5)
 sprite_frames = SubResource("SpriteFrames_17cnu")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
+frame = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-visible = false
 position = Vector2(-2, 5)
 shape = SubResource("CapsuleShape2D_w56ve")
 
@@ -222,7 +271,27 @@ one_shot = true
 wait_time = 0.1
 one_shot = true
 
-[node name="Shoot_Reference" type="Marker2D" parent="."]
-position = Vector2(0, 6)
+[node name="Shoot_delay" type="Timer" parent="."]
+one_shot = true
+
+[node name="Gun" type="Sprite2D" parent="."]
+texture_filter = 1
+position = Vector2(102, 21)
+scale = Vector2(2.2395, 2.15066)
+texture = ExtResource("5_5w7nx")
+offset = Vector2(8.03752, -0.929947)
+flip_v = true
+
+[node name="Shoot_Reference" type="Marker2D" parent="Gun"]
+position = Vector2(23.2195, 1.85989)
+scale = Vector2(0.446528, 0.464974)
+
+[node name="Hands" type="Node2D" parent="."]
+
+[node name="Left_hand" type="Marker2D" parent="Hands"]
+position = Vector2(10, 18)
+
+[node name="Right_hand" type="Marker2D" parent="Hands"]
+position = Vector2(-12, 15)
 
 [connection signal="timeout" from="Timers/Ghost_Timer" to="." method="_on_ghost_timer_timeout"]

@@ -24,4 +24,5 @@ func update_velocity(delta):
 
 
 func _on_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int):
-	queue_free()
+	if body.name != "Player":
+		queue_free()
