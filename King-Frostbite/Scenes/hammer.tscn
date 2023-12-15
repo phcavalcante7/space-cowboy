@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://wnvy14wdqw06"]
+
+[ext_resource type="Script" path="res://King-Frostbite/Scripts/Hammer.gd" id="1_o10ty"]
+[ext_resource type="PackedScene" uid="uid://de45gclp40d7i" path="res://Bruxa/Scenes/bullet-witch.tscn" id="2_44fnf"]
+[ext_resource type="Texture2D" uid="uid://byokdu0kvx3u7" path="res://King-Frostbite/Assets/king_frostbite_hammer.png" id="3_ui3ys"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ey1ga"]
+size = Vector2(20, 17.3333)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l74y5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_ui3ys")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_n6jbv"]
+radius = 28.0
+
+[node name="Hammer" type="StaticBody2D"]
+script = ExtResource("1_o10ty")
+bullet_scene = ExtResource("2_44fnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(1.5, 1.5)
+shape = SubResource("RectangleShape2D_ey1ga")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_l74y5")
+
+[node name="KingGettingHammer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KingGettingHammer"]
+shape = SubResource("CircleShape2D_n6jbv")
+
+[node name="GettingHammer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="KingGettingHammer" to="." method="_on_king_getting_hammer_body_entered"]
+[connection signal="timeout" from="GettingHammer" to="." method="_on_getting_hammer_timeout"]

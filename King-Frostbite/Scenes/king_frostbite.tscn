@@ -1,0 +1,58 @@
+[gd_scene load_steps=9 format=3 uid="uid://sut4ctwysmea"]
+
+[ext_resource type="Script" path="res://King-Frostbite/Scripts/king-frostbite.gd" id="1_70dn0"]
+[ext_resource type="PackedScene" uid="uid://cdn4csyqllher" path="res://Yeti/Scenes/snowball.tscn" id="2_do1ft"]
+[ext_resource type="PackedScene" uid="uid://wnvy14wdqw06" path="res://King-Frostbite/Scenes/hammer.tscn" id="3_cueyt"]
+[ext_resource type="PackedScene" uid="uid://dxrj3u52hv501" path="res://King-Frostbite/Scenes/freezed_area.tscn" id="4_lt6qk"]
+[ext_resource type="Texture2D" uid="uid://c3a2wpi03hah6" path="res://randomAssets/BonecoDeNeve.png" id="5_tew2i"]
+[ext_resource type="Texture2D" uid="uid://cs1kf5yk5ivyk" path="res://King-Frostbite/Assets/king_frostbite.png" id="6_5booh"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_opkhf"]
+radius = 15.0
+height = 46.0
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ssp4i"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_tew2i")
+}],
+"loop": true,
+"name": &"breath",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_5booh")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="King-Frostbite" type="CharacterBody2D"]
+script = ExtResource("1_70dn0")
+bullet_scene = ExtResource("2_do1ft")
+hammer = ExtResource("3_cueyt")
+freezing = ExtResource("4_lt6qk")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_opkhf")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ssp4i")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+[node name="ArremessoDoMartelo" type="Timer" parent="."]
+
+[node name="Shoot" type="Timer" parent="."]
+
+[node name="ArremessoEm2Seg" type="Timer" parent="."]
+
+[node name="GettingHammer" type="Timer" parent="."]
+
+[connection signal="timeout" from="ArremessoDoMartelo" to="." method="_on_arremesso_do_martelo_timeout"]
+[connection signal="timeout" from="Shoot" to="." method="_on_shoot_timeout"]
+[connection signal="timeout" from="ArremessoEm2Seg" to="." method="_on_arremesso_em_2_seg_timeout"]
+[connection signal="timeout" from="GettingHammer" to="." method="_on_getting_hammer_timeout"]
