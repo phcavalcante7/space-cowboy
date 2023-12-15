@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://donbjye20aj37"]
+
+[ext_resource type="PackedScene" uid="uid://blr8abxgqs4jb" path="res://Map/Scenes_gelo/gelo_room_1.tscn" id="1_cu2x7"]
+[ext_resource type="PackedScene" uid="uid://c263uky2q3wta" path="res://Map/Scenes_gelo/gelo_room_2.tscn" id="2_vgoa0"]
+
+[node name="FirstMap" type="Node2D"]
+
+[node name="Gelo_Room1" parent="." instance=ExtResource("1_cu2x7")]
+
+[node name="Gelo_Room2" parent="." instance=ExtResource("2_vgoa0")]
