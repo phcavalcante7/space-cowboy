@@ -1,10 +1,10 @@
 [gd_scene load_steps=23 format=3 uid="uid://ct1jkcxq0v8cf"]
 
 [ext_resource type="Script" path="res://Jogador/Scripts/CharacterBody2D.gd" id="1_1fpwl"]
+[ext_resource type="PackedScene" uid="uid://cisyb23r5wlju" path="res://Jogador/Scenes/Ghost_Effect.tscn" id="2_v1k0g"]
 [ext_resource type="Texture2D" uid="uid://cf0q7j8x2rn7u" path="res://Jogador/Assets/Bart/Bart Wayne first sprite (3 rows).png" id="3_rvcdp"]
 [ext_resource type="Texture2D" uid="uid://b7peqrtgfgg2x" path="res://Jogador/Assets/Bart/Bart Wayne first sprite (1 row).png" id="4_kpj0j"]
 [ext_resource type="Texture2D" uid="uid://ceb53b1ydxkqk" path="res://Jogador/Assets/gun_test_1.png" id="5_5w7nx"]
-[ext_resource type="Script" path="res://Jogador/Scripts/Player_Camera.gd" id="5_krhwa"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ac0pt"]
 atlas = ExtResource("3_rvcdp")
@@ -232,7 +232,10 @@ _data = {
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 2
+collision_layer = 1025
+collision_mask = 1025
 script = ExtResource("1_1fpwl")
+ghost_effect = ExtResource("2_v1k0g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
@@ -292,10 +295,5 @@ position = Vector2(10, 18)
 
 [node name="Right_hand" type="Marker2D" parent="Hands"]
 position = Vector2(-12, 15)
-
-[node name="Camera2D" type="Camera2D" parent="."]
-limit_left = 0
-limit_top = 0
-script = ExtResource("5_krhwa")
 
 [connection signal="timeout" from="Timers/Ghost_Timer" to="." method="_on_ghost_timer_timeout"]

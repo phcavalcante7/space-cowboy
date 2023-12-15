@@ -5,24 +5,16 @@ const DASH_SPEED = 550.0
 const DASH_COOLDOWN = 1.5
 const DASH_DURATION = 0.3
 
-var hp = 100
 var speed = 200.0
-var start = false
-var bottomlimit = false
-var leftlimit = false
-var boss = false
-var second = false
-var secondlimit = false
-var secondleftgone = false
-var secondtopbot = false
-var bar = false
+var damage = 1
+var life = 10
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var dash_lenght = $Timers/Dash_lenght
 @onready var dash_cooldown_timer = $Timers/Dash_cooldown
 @onready var ghost_timer = $Timers/Ghost_Timer
-@export var bullet_fired : PackedScene = preload("res://Jogador/Scenes/bullet.tscn")
-@export var ghost_effect : PackedScene = preload("res://Jogador/Scenes/Ghost_Effect.tscn")
+@export var bullet_fired : PackedScene
+@export var ghost_effect : PackedScene
 
 
 func _ready() -> void:
@@ -125,53 +117,3 @@ func firing():
 		$Shoot_delay.wait_time = 0.3
 		$Shoot_delay.start()
 
-
-
-func _on_next_map_body_entered(body):
-	if body.name == 'Player':
-		get_tree().change_scene_to_file("res://Map/Scenes_gelo/gelo_room_2.tscn")
-
-
-func _on_right_body_entered(body):
-	if body.name == 'Player':
-		leftlimit = true
-
-func _on_bottom_body_entered(body):
-	if body.name == 'Player':
-		bottomlimit = true
-
-func _on_start_body_entered(body):
-	if body.name == 'Player':
-		start = true
-
-func _on_boss_room_body_entered(body):
-	if body.name == 'Player':
-		get_tree().change_scene_to_file("res://Map/Scenes_gelo/king_room.tscn")
-
-func _on_start_2_room_body_entered(body):
-	if body.name == 'Player':
-		second = true
-
-func _on_second_limit_body_entered(body):
-	if body.name == 'Player':
-		secondlimit = true
-
-
-func _on_second_leftgone_body_entered(body):
-	if body.name == 'Player':
-		secondleftgone = true
-
-
-func _on_second_top_bot_body_entered(body):
-	if body.name == 'Player':
-		secondtopbot = true
-
-
-func _on_area_2d_body_entered(body):
-	if body.name == 'Player':
-		boss = true
-
-
-func _on_bar_body_entered(body):
-	if body.name == 'Player':
-		bar = true
