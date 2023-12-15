@@ -5,19 +5,34 @@ const DASH_SPEED = 550.0
 const DASH_COOLDOWN = 1.5
 const DASH_DURATION = 0.3
 
+var hp = 100
 var speed = 200.0
-
+var start = false
+var bottomlimit = false
+var leftlimit = false
+var boss = false
+var second = false
+var secondlimit = false
+var secondleftgone = false
+var secondtopbot = false
+var bar = false
 
 @onready var anim = get_node("AnimationPlayer")
 @onready var dash_lenght = $Timers/Dash_lenght
 @onready var dash_cooldown_timer = $Timers/Dash_cooldown
 @onready var ghost_timer = $Timers/Ghost_Timer
-@export var bullet_fired : PackedScene
-@export var ghost_effect : PackedScene
+@export var bullet_fired : PackedScene = preload("res://Jogador/Scenes/bullet.tscn")
+@export var ghost_effect : PackedScene = preload("res://Jogador/Scenes/Ghost_Effect.tscn")
 
+
+func _ready() -> void:
+	$Gun.global_position = $Hands/Left_hand.global_position
 
 func _physics_process(delta):
 	velocity = Input.get_vector("move_left","move_right","move_up","move_down", 0.0).normalized() * speed
+	
+	if ($Gun.global_position - get_global_mouse_position()).length() > 40:
+		$Gun.look_at(get_global_mouse_position())
 	
 	verif_dash()
 	is_looking_at()
@@ -76,8 +91,16 @@ func _on_ghost_timer_timeout(): # Quando o tempo do Ghost_timer acaba executa
 
 func is_looking_at(): # Muda a direção onde o personagem está olhando
 	if mouse_direction().x < 0:
+		$Gun.global_position = $Hands/Right_hand.global_position
+		$Gun.flip_v = true
+		$Gun.offset = Vector2(8.038, 0.93)
+		$Gun/Shoot_Reference.position = Vector2(23.666, 1.85)
 		$AnimatedSprite2D.flip_h = true
 	else:
+		$Gun.global_position = $Hands/Left_hand.global_position
+		$Gun.flip_v = false
+		$Gun/Shoot_Reference.position = Vector2(23.666, -3.255)
+		$Gun.offset = Vector2(8.038, -0.93)
 		$AnimatedSprite2D.flip_h = false
 
 
@@ -86,7 +109,7 @@ func mouse_direction() -> Vector2:
 
 
 func firing():
-	if Input.is_action_just_pressed("mouse_left_click"):
+	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT) and $Shoot_delay.is_stopped():
 		var rnd = randf_range(1.0, 1.3)
 		$Sounds2.stream = load("res://Jogador/Assets/Sounds/laser-gun-81720.mp3")
 		$Sounds2.pitch_scale = rnd
@@ -94,9 +117,61 @@ func firing():
 		$Sounds2.play(0.0)
 		var new_bullet = bullet_fired.instantiate()
 		
-		var direction = (get_global_mouse_position() - $Shoot_Reference.global_position).normalized()
-		var pos = self.global_position + (direction * 50)
+		var direction = (get_global_mouse_position() - $Gun/Shoot_Reference.global_position).normalized()
+		var pos = $Gun/Shoot_Reference.global_position
 		
 		new_bullet.set_property(pos, direction, Vector2(0.5,0.5), direction.angle())
 		get_tree().current_scene.add_child(new_bullet)
+		$Shoot_delay.wait_time = 0.3
+		$Shoot_delay.start()
 
+
+
+func _on_next_map_body_entered(body):
+	if body.name == 'Player':
+		get_tree().change_scene_to_file("res://Map/Scenes_gelo/gelo_room_2.tscn")
+
+
+func _on_right_body_entered(body):
+	if body.name == 'Player':
+		leftlimit = true
+
+func _on_bottom_body_entered(body):
+	if body.name == 'Player':
+		bottomlimit = true
+
+func _on_start_body_entered(body):
+	if body.name == 'Player':
+		start = true
+
+func _on_boss_room_body_entered(body):
+	if body.name == 'Player':
+		get_tree().change_scene_to_file("res://Map/Scenes_gelo/king_room.tscn")
+
+func _on_start_2_room_body_entered(body):
+	if body.name == 'Player':
+		second = true
+
+func _on_second_limit_body_entered(body):
+	if body.name == 'Player':
+		secondlimit = true
+
+
+func _on_second_leftgone_body_entered(body):
+	if body.name == 'Player':
+		secondleftgone = true
+
+
+func _on_second_top_bot_body_entered(body):
+	if body.name == 'Player':
+		secondtopbot = true
+
+
+func _on_area_2d_body_entered(body):
+	if body.name == 'Player':
+		boss = true
+
+
+func _on_bar_body_entered(body):
+	if body.name == 'Player':
+		bar = true
