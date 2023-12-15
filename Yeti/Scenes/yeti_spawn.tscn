@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgccbeg83cai8"]
+
+[ext_resource type="Script" path="res://Yeti/Scripts/yeti_spawn.gd" id="1_n038v"]
+[ext_resource type="PackedScene" uid="uid://bp2o15b80omxa" path="res://Yeti/Scenes/yeti.tscn" id="2_ai86w"]
+
+[node name="YetiSpawn" type="Node2D"]
+script = ExtResource("1_n038v")
+yeti_scene = ExtResource("2_ai86w")

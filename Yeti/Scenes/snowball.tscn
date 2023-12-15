@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://cdn4csyqllher"]
+
+[ext_resource type="Script" path="res://Yeti/Scripts/snowball.gd" id="1_dwars"]
+[ext_resource type="Texture2D" uid="uid://dccsh1lb4ekpp" path="res://Yeti/Assets/snowball.png" id="2_ggvi3"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1o1me"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ggvi3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Snowball" type="Node2D"]
+light_mask = 2
+scale = Vector2(2, 1.832)
+script = ExtResource("1_dwars")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_1o1me")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-9, -9)
+scale = Vector2(0.993808, 0.980369)
+target_position = Vector2(17.9283, 18.4078)
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]
