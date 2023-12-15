@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bsj3we0jd7rxl"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/HitBox_logic.gd" id="1_p0dtl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ysnmd"]
+size = Vector2(24, 23)
+
+[node name="HitBox_Patrulheiro" type="Area2D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_p0dtl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_ysnmd")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,55 @@
+[gd_scene load_steps=7 format=3 uid="uid://cg2uf3ot0pd2o"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/patrulheiro_bullet.gd" id="1_eq7n4"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ktio2"]
+radius = 12.0
+height = 70.0
+
+[sub_resource type="Gradient" id="Gradient_udncn"]
+colors = PackedColorArray(0, 0, 0.760784, 1, 0, 1, 1, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ruw6p"]
+gradient = SubResource("Gradient_udncn")
+fill = 1
+fill_from = Vector2(0.470085, 0)
+fill_to = Vector2(0.482906, 1)
+
+[sub_resource type="Gradient" id="Gradient_gitfg"]
+offsets = PackedFloat32Array(0, 0.506726, 1)
+colors = PackedColorArray(0, 0, 1, 1, 0.077875, 0.315617, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_h024t"]
+gradient = SubResource("Gradient_gitfg")
+width = 150
+height = 150
+fill = 1
+fill_from = Vector2(0.5, 0.512821)
+fill_to = Vector2(0.944444, 0.0555556)
+
+[node name="Patrulheiro_Bullet" type="Area2D"]
+collision_layer = 1026
+collision_mask = 1026
+script = ExtResource("1_eq7n4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_ktio2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0.5, 0)
+rotation = 1.5708
+scale = Vector2(0.171875, 1)
+texture = SubResource("GradientTexture2D_ruw6p")
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+color = Color(0.054902, 0.847059, 1, 1)
+texture = SubResource("GradientTexture2D_h024t")
+texture_scale = 0.65
+
+[node name="Life_time" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

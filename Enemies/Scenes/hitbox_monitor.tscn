@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2dyk1wg61wn3"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/HitBox_logic.gd" id="1_ymk4g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3bd6f"]
+radius = 16.0
+
+[node name="HitBox" type="Area2D"]
+collision_layer = 512
+collision_mask = 512
+script = ExtResource("1_ymk4g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_3bd6f")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

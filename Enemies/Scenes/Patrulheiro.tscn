@@ -1,0 +1,58 @@
+[gd_scene load_steps=7 format=3 uid="uid://o1rp1svnc0u3"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/S_Patrulheiro.gd" id="1_u5cy6"]
+[ext_resource type="Texture2D" uid="uid://dtisi4osgb8g1" path="res://Enemies/Enemies_Assets/patrulheiro.png" id="2_8ya0i"]
+[ext_resource type="PackedScene" uid="uid://bqdgi2yqe2mh1" path="res://Enemies/Scenes/raycastsAI.tscn" id="2_l234d"]
+[ext_resource type="PackedScene" uid="uid://bsj3we0jd7rxl" path="res://Enemies/Scenes/hit_box_patrulheiro.tscn" id="4_n1i67"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ddgph"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_8ya0i")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tepus"]
+
+[node name="Patrulheiro" type="CharacterBody2D"]
+scale = Vector2(2.5, 2.5)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_u5cy6")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+rotation = -1.57413
+sprite_frames = SubResource("SpriteFrames_ddgph")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("RectangleShape2D_tepus")
+
+[node name="Raycasts" parent="." instance=ExtResource("2_l234d")]
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+debug_enabled = true
+
+[node name="Looking" type="RayCast2D" parent="."]
+target_position = Vector2(200, 0)
+collision_mask = 2
+
+[node name="HitBox_Patrulheiro" parent="." instance=ExtResource("4_n1i67")]
+position = Vector2(-0.4, 0.8)
+
+[node name="Shoot_Delay" type="Timer" parent="."]
+one_shot = true
+autostart = true
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[node name="Right_gun" type="Marker2D" parent="Node2D"]
+position = Vector2(15.2, 11.6)
+
+[node name="Left_gun" type="Marker2D" parent="Node2D"]
+position = Vector2(15.2, -11.6)

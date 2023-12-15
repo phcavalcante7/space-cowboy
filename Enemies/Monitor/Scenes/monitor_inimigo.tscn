@@ -1,0 +1,252 @@
+[gd_scene load_steps=23 format=3 uid="uid://c6qwnhr2u3qyw"]
+
+[ext_resource type="Script" path="res://Enemies/Scripts/Enemy_Chase.gd" id="1_mvxlx"]
+[ext_resource type="Texture2D" uid="uid://b8123aqbmlkuj" path="res://Enemies/Monitor/Assets/Pedaços/Robo_sem_braco.png" id="1_oty8f"]
+[ext_resource type="Texture2D" uid="uid://dhgllj5i0wcv8" path="res://Enemies/Monitor/Assets/braco_para_bone.png" id="2_o3etm"]
+[ext_resource type="Script" path="res://Enemies/Monitor/Scripts/S_Skeleton2D.gd" id="3_yqk30"]
+[ext_resource type="PackedScene" uid="uid://cae4xlqowtsbo" path="res://Enemies/Scenes/part_eletrica.tscn" id="4_ijc8k"]
+[ext_resource type="PackedScene" uid="uid://bqdgi2yqe2mh1" path="res://Enemies/Scenes/raycastsAI.tscn" id="4_x4bid"]
+[ext_resource type="PackedScene" uid="uid://d2dyk1wg61wn3" path="res://Enemies/Scenes/hitbox_monitor.tscn" id="7_gs01l"]
+
+[sub_resource type="SkeletonModification2DCCDIK" id="SkeletonModification2DCCDIK_adkkw"]
+target_nodepath = NodePath("../Point_move")
+tip_nodepath = NodePath("b1/b2/b3/b4/b5")
+ccdik_data_chain_length = 4
+joint_data/0/bone_index = 3
+joint_data/0/bone2d_node = NodePath("b1/b2/b3/b4")
+joint_data/0/rotate_from_joint = false
+joint_data/0/enable_constraint = true
+joint_data/0/constraint_angle_min = 44.72
+joint_data/0/constraint_angle_max = 230.311
+joint_data/0/constraint_angle_invert = false
+joint_data/0/constraint_in_localspace = true
+joint_data/0/editor_draw_gizmo = true
+joint_data/1/bone_index = 2
+joint_data/1/bone2d_node = NodePath("b1/b2/b3")
+joint_data/1/rotate_from_joint = false
+joint_data/1/enable_constraint = false
+joint_data/1/editor_draw_gizmo = true
+joint_data/2/bone_index = 1
+joint_data/2/bone2d_node = NodePath("b1/b2")
+joint_data/2/rotate_from_joint = false
+joint_data/2/enable_constraint = false
+joint_data/2/editor_draw_gizmo = true
+joint_data/3/bone_index = 0
+joint_data/3/bone2d_node = NodePath("b1")
+joint_data/3/rotate_from_joint = false
+joint_data/3/enable_constraint = false
+joint_data/3/editor_draw_gizmo = true
+
+[sub_resource type="SkeletonModificationStack2D" id="SkeletonModificationStack2D_rw5en"]
+modification_count = 1
+modifications/0 = SubResource("SkeletonModification2DCCDIK_adkkw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kbbf5"]
+size = Vector2(16.8253, 5.18183)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_3qxf7"]
+radius = 10.6719
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln3t3"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_c7omp"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xcx1n"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bcal5"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_en3yh"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ctpg3"]
+atlas = ExtResource("1_oty8f")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_u2vfg"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln3t3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_c7omp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xcx1n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bcal5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_en3yh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ctpg3")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_16t62"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [1]
+}
+
+[sub_resource type="Animation" id="Animation_x7sv7"]
+resource_name = "Run"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_xajxu"]
+_data = {
+"RESET": SubResource("Animation_16t62"),
+"Run": SubResource("Animation_x7sv7")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_63cp4"]
+radius = 16.6667
+
+[node name="Monitor" type="CharacterBody2D"]
+scale = Vector2(3, 3)
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_mvxlx")
+
+[node name="Braco" type="Node2D" parent="."]
+visible = false
+position = Vector2(-10.6, -69.8)
+scale = Vector2(0.5, 0.5)
+
+[node name="Polygon2D" type="Polygon2D" parent="Braco"]
+visible = false
+position = Vector2(-24.6, 68.4)
+texture = ExtResource("2_o3etm")
+skeleton = NodePath("../Skeleton2D")
+polygon = PackedVector2Array(56.375, 51.25, 55.4375, 56.6875, 50.375, 57.3125, 39.875, 47.9375, 38.4375, 46.375, 36.8125, 44.8125, 24.3125, 32, 22.375, 30.0625, 20.5625, 28.625, 8.375, 15.9375, 7, 14.3125, 5.5625, 12.5625, 1.875, 8.0625, 1.5625, 2.75, 7.375, 2.6875, 11.375, 5.8125, 13.125, 7.5, 15.0625, 9.1875, 26.3125, 20.9375, 28.375, 22.8125, 30.375, 25.0625, 43.125, 37.5, 44.5, 38.9375, 46.125, 40.5)
+uv = PackedVector2Array(55.4638, 50.9373, 55.3125, 56.1875, 50.1897, 56.7634, 40.3478, 46.8129, 38.8642, 45.3293, 37.4548, 43.8458, 25.0672, 31.9032, 23.1302, 30.0675, 21.5809, 28.4911, 8.875, 15.875, 7.3125, 14.4375, 5.90795, 13.213, 1.25, 8.0625, 2.10803, 2.61004, 7.80791, 2.73262, 11.375, 6, 12.625, 7.25, 14.25, 8.625, 26.625, 21, 28.25, 22.625, 30, 24.5625, 43.0181, 37.4665, 44.1308, 38.7276, 45.466, 40.1369)
+polygons = [PackedInt32Array(13, 12, 11, 15, 14), PackedInt32Array(11, 10, 16, 15), PackedInt32Array(10, 9, 17, 16), PackedInt32Array(9, 8, 18, 17), PackedInt32Array(8, 7, 19, 18), PackedInt32Array(7, 6, 20, 19), PackedInt32Array(6, 5, 21, 20), PackedInt32Array(5, 4, 22, 21), PackedInt32Array(4, 3, 23, 22), PackedInt32Array(3, 2, 1, 0, 23)]
+bones = ["b1", PackedFloat32Array(1, 1, 1, 1, 0.44, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.44, 1), "b1/b2", PackedFloat32Array(0, 0, 0, 0, 0.44, 1, 1, 0.41, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.41, 1, 1, 0.49, 0), "b1/b2/b3", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0.56, 1, 1, 0.56, 0, 0, 0, 0, 0, 0.56, 1, 1, 0.56, 0, 0, 0, 0), "b1/b2/b3/b4", PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0.56, 1, 1, 1, 1, 1, 0.56, 0, 0, 0, 0, 0, 0, 0)]
+
+[node name="Skeleton2D" type="Skeleton2D" parent="Braco"]
+visible = false
+position = Vector2(-24.6, 68.4)
+modification_stack = SubResource("SkeletonModificationStack2D_rw5en")
+script = ExtResource("3_yqk30")
+
+[node name="b1" type="Bone2D" parent="Braco/Skeleton2D"]
+position = Vector2(49.8, 54.9999)
+rotation = 3.03183
+scale = Vector2(0.999835, 0.999835)
+rest = Transform2D(1, 0, 0, 1, 53.6, 54.6)
+
+[node name="b2" type="Bone2D" parent="Braco/Skeleton2D/b1"]
+position = Vector2(-13.199, -12.7998)
+rotation = 1.0854
+scale = Vector2(0.999895, 0.999895)
+rest = Transform2D(1, 0, 0, 1, -13.2, -12.8)
+
+[node name="b3" type="Bone2D" parent="Braco/Skeleton2D/b1/b2"]
+position = Vector2(-14, -14.2008)
+rotation = 0.234258
+scale = Vector2(0.999885, 0.999885)
+rest = Transform2D(1, 0, 0, 1, -14, -14.2)
+
+[node name="b4" type="Bone2D" parent="Braco/Skeleton2D/b1/b2/b3"]
+position = Vector2(-16.5999, -16.9992)
+rotation = -2.2635
+scale = Vector2(0.529621, 0.999943)
+rest = Transform2D(-0.382396, -0.366392, 0.691835, -0.722055, -16.6, -17)
+
+[node name="Area2D" type="Area2D" parent="Braco/Skeleton2D/b1/b2/b3/b4"]
+collision_layer = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Braco/Skeleton2D/b1/b2/b3/b4/Area2D"]
+position = Vector2(13.9176, 0.292355)
+shape = SubResource("RectangleShape2D_kbbf5")
+
+[node name="b5" type="Bone2D" parent="Braco/Skeleton2D/b1/b2/b3/b4"]
+visible = false
+position = Vector2(17.8854, -0.38372)
+rotation = 2.34056
+rest = Transform2D(-0.382396, -0.366392, 0.691835, -0.722055, -16.6, -17)
+
+[node name="GPUParticles2D" parent="Braco/Skeleton2D/b1/b2/b3/b4" instance=ExtResource("4_ijc8k")]
+position = Vector2(14.4423, -0.0101395)
+rotation = -2.39185
+scale = Vector2(2.5522, 3.42945)
+skew = 0.528421
+
+[node name="Point_move" type="Marker2D" parent="Braco"]
+visible = false
+position = Vector2(27.6, 69.6)
+rotation = -2.32376
+scale = Vector2(0.529594, 0.999958)
+skew = -6.38962e-05
+
+[node name="HitBox" parent="." instance=ExtResource("7_gs01l")]
+visible = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.333333, -0.666667)
+shape = SubResource("CircleShape2D_3qxf7")
+
+[node name="Sprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+position = Vector2(-1.6, 10.4)
+sprite_frames = SubResource("SpriteFrames_u2vfg")
+animation = &"Run"
+frame = 1
+
+[node name="NavigationAgent2D" type="NavigationAgent2D" parent="."]
+
+[node name="Raycasts" parent="." instance=ExtResource("4_x4bid")]
+scale = Vector2(0.7, 0.7)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_xajxu")
+}
+
+[node name="Hit_area" type="Area2D" parent="."]
+collision_layer = 1024
+collision_mask = 1024
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hit_area"]
+shape = SubResource("CircleShape2D_63cp4")
+
+[node name="Damage_delay" type="Timer" parent="."]
+one_shot = true
+
+[connection signal="body_entered" from="Hit_area" to="." method="_on_hit_area_body_entered"]
+[connection signal="body_exited" from="Hit_area" to="." method="_on_hit_area_body_exited"]
